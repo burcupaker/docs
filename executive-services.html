@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Executive Services | Operationary</title>
+<meta name="description" content="Executive support for founders and leadership teams: calendar and inbox management, meeting preparation and follow-through, board logistics and special projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap">
+<!-- Live URL: /executive-services -->
+<style>
+/* ===== Operationary — shared tokens + site chrome ===== */
+:root{
+  --teal:#0F4A56;
+  --teal-deep:#0A3640;
+  --cream:#FAF8F3;
+  --white:#FFFFFF;
+  --body:#42575C;
+  --muted:#7C9096;
+  --muted-ink:#5B7075;
+  --rule:#DCD9D1;
+  --pale:#E4EEF0;
+  --magenta:#FC00AE;
+  --magenta-ink:#B3007C;
+  --magenta-wash:#FFE6F6;
+  --gold:#FCBB57;
+  --gold-wash:#FFF1DA;
+  --aqua:#2CC5C9;
+  --aqua-wash:#DDF6F7;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --max:1240px;
+  --gut:clamp(16px,4vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--white);color:var(--body);font:400 17px/1.6 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+img,svg{max-width:100%}
+a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--magenta);outline-offset:3px;border-radius:2px}
+h1,h2,h3,h4{color:var(--teal);margin:0;font-weight:500}
+p{margin:0 0 1em}
+ul,ol{margin:0;padding:0}
+table{border-collapse:collapse;width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-80px;background:var(--teal);color:#fff;padding:10px 16px;z-index:200;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+.num{font-variant-numeric:tabular-nums}
+
+/* type */
+.eyebrow{font:600 12px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:10px;margin:0 0 22px}
+.eyebrow::before{content:"";width:10px;height:10px;background:var(--magenta);flex:none}
+.on-dark .eyebrow{color:var(--aqua)}
+.h-display{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.2vw,84px);line-height:1.02;letter-spacing:-.025em}
+.h-section{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.6vw,60px);line-height:1.05;letter-spacing:-.02em}
+.h-sub{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.012em}
+.lede{font-size:clamp(18px,1.55vw,20px);line-height:1.55;max-width:34em}
+.label{font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted-ink)}
+
+/* buttons + links */
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 var(--sans);padding:17px 26px;border-radius:6px;text-decoration:none;border:2px solid transparent;transition:background-color .2s,color .2s,border-color .2s}
+.btn-aqua{background:var(--aqua);color:var(--teal)}
+.btn-aqua:hover{background:var(--teal);color:#fff}
+.on-dark .btn-aqua:hover{background:#fff;color:var(--teal)}
+.btn-line{border-color:currentColor;color:var(--teal)}
+.btn-line:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+.arrow-link{font:600 15px/1.3 var(--sans);color:var(--teal);text-decoration:none;display:inline-flex;gap:8px;align-items:center;border-bottom:2px solid var(--gold);padding-bottom:4px;transition:border-color .2s}
+.arrow-link .ar{display:inline-block;transition:transform .2s}
+.arrow-link:hover{border-color:var(--magenta)}
+.arrow-link:hover .ar{transform:translateX(4px)}
+.on-dark .arrow-link{color:#fff}
+
+/* layer glyphs — one shape per layer, used across the page */
+.g{display:inline-block;width:14px;height:14px;flex:none;vertical-align:middle}
+.g-1{background:var(--magenta);border-radius:50%}
+.g-2{background:var(--gold)}
+.g-3{background:var(--aqua);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.g-4{background:var(--teal);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.g-5{background:var(--magenta);border-radius:100% 0 0 0}
+.g-6{background:var(--teal);border-radius:14px 14px 0 0;height:7px;margin-top:7px}
+.on-dark .g-4,.on-dark .g-6{background:#fff}
+
+/* header */
+.site-header{background:#fff;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:60}
+.nav{display:flex;align-items:center;gap:20px;min-height:78px}
+.logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--teal);font:700 21px/1 var(--sans);letter-spacing:-.025em;margin-right:auto}
+.logo svg{width:34px;height:34px;flex:none}
+.menu{display:flex;gap:2px;list-style:none;align-items:center}
+.menu>li{position:relative}
+.menu>li>a{display:block;padding:11px 12px;font:500 15px/1 var(--sans);color:var(--teal);text-decoration:none;border-radius:4px;white-space:nowrap}
+.menu>li>a:hover{background:var(--pale)}
+.menu>li.in-section>a{box-shadow:inset 0 -2px 0 var(--magenta);border-radius:0}
+.has-sub>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-3px) rotate(45deg);margin-left:9px}
+.sub{position:absolute;top:100%;left:0;min-width:280px;background:#fff;border:1px solid var(--rule);border-top:3px solid var(--aqua);list-style:none;padding:10px 0;display:none;box-shadow:0 14px 34px rgba(15,74,86,.09)}
+.has-sub:hover .sub,.has-sub:focus-within .sub{display:block}
+.sub a{display:block;padding:10px 22px;font:500 15px/1.3 var(--sans);color:var(--teal);text-decoration:none}
+.sub a:hover{background:var(--pale)}
+.sub a[aria-current]{font-weight:600;background:var(--cream);box-shadow:inset 3px 0 0 var(--magenta)}
+.nav-cta{padding:14px 20px;font-size:14px;margin-left:10px}
+.mnav{display:none}
+.mnav summary{list-style:none;cursor:pointer;font:600 14px/1 var(--sans);color:var(--teal);padding:12px 16px;border:1.5px solid var(--teal);border-radius:6px;display:flex;gap:10px;align-items:center}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary .bars{width:16px;height:10px;border-top:2px solid currentColor;border-bottom:2px solid currentColor;position:relative}
+.mnav summary .bars::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2px solid currentColor}
+.mnav[open] summary{background:var(--teal);color:#fff}
+.mnav-panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--rule);padding:10px var(--gut) 28px;max-height:calc(100vh - 78px);overflow:auto;box-shadow:0 18px 30px rgba(15,74,86,.08)}
+.mnav-panel .grp{padding:16px 0;border-bottom:1px solid var(--rule)}
+.mnav-panel .grp p{margin:0 0 8px}
+.mnav-panel ul{list-style:none}
+.mnav-panel a{display:block;padding:8px 0;color:var(--teal);text-decoration:none;font:500 16px/1.3 var(--sans)}
+.mnav-panel a:hover{text-decoration:underline}
+.mnav-panel a[aria-current]{font-weight:700;box-shadow:inset 3px 0 0 var(--magenta);padding-left:12px}
+.mnav-panel .btn{margin-top:20px;display:flex;justify-content:center}
+@media (max-width:1120px){.menu,.nav-cta{display:none}.mnav{display:block}}
+
+/* footer */
+.site-footer{background:var(--teal-deep);color:rgba(255,255,255,.82);padding:72px 0 36px;font-size:15px}
+.site-footer .logo{color:#fff;margin:0 0 16px}
+.f-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}
+.f-grid h2{font:600 11px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--aqua);margin:0 0 14px}
+.f-grid ul{list-style:none}
+.f-grid li{margin:0 0 8px}
+.f-grid a{color:#fff;text-decoration:none}
+.f-grid a:hover{text-decoration:underline}
+.f-base{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:rgba(255,255,255,.66)}
+@media (max-width:860px){.f-grid{grid-template-columns:1fr 1fr}.f-grid>div:first-child{grid-column:1/-1}}
+@media (max-width:440px){.f-grid{grid-template-columns:1fr}}
+
+/* ===== shared pieces for work-example pages ===== */
+.crumbs{font:500 13px/1.5 var(--sans);color:var(--muted-ink);margin:0 0 28px}
+.crumbs a{color:var(--muted-ink)}
+.crumbs a:hover{color:var(--teal)}
+.crumbs span[aria-hidden]{margin:0 8px;color:var(--muted)}
+.disclaimer{border-left:4px solid var(--gold);background:var(--cream);padding:18px 22px;font-size:14px;line-height:1.55;color:var(--body);margin:0}
+.disclaimer strong{color:var(--teal)}
+.disclaimer+.disclaimer{margin-top:12px}
+.disclaimer.legal{border-left-color:var(--magenta)}
+.sec{padding:clamp(80px,10vw,144px) 0}
+
+/* --- 1. hero --- */
+.hero{position:relative;padding:clamp(36px,5vw,72px) 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.92fr);gap:clamp(40px,6vw,96px);align-items:start}
+.hero h1{max-width:11.5em}
+.hero h1 em{font-style:italic;box-shadow:inset 0 -.2em 0 var(--gold)}
+.hero .lede{margin-top:30px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;margin-top:38px}
+.hero-art{position:relative;margin-top:clamp(0px,3vw,48px)}
+.hero-art .sq{position:absolute;width:64px;height:64px;background:var(--magenta);top:-32px;left:-32px}
+.hero-art .qc{position:absolute;width:120px;height:120px;background:var(--gold);border-radius:0 0 0 100%;right:-40px;bottom:-60px}
+.queue{position:relative;background:var(--teal);color:#fff;padding:30px 30px 26px}
+.q-head{display:flex;justify-content:space-between;gap:12px;font:600 11px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--aqua);padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.28);margin:0}
+.queue ol{list-style:none}
+.queue li{display:grid;grid-template-columns:70px minmax(0,1fr) auto;gap:14px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14);align-items:baseline}
+.queue time{font:500 12px/1.4 var(--sans);color:rgba(255,255,255,.72);font-variant-numeric:tabular-nums}
+.queue li p{margin:0;font:400 15px/1.45 var(--sans)}
+.q-tag{font:600 10.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.q-foot{font:italic 400 23px/1.3 var(--serif);margin:20px 0 0}
+.q-foot b{font-style:normal;font-weight:500;color:var(--gold)}
+.hero-strip{margin-top:clamp(72px,9vw,120px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--rule)}
+.hero-strip div{padding:26px 28px 34px 0}
+.hero-strip div+div{padding-left:28px;border-left:1px solid var(--rule)}
+.hero-strip dt{margin:0 0 8px}
+.hero-strip dd{margin:0;font-size:15.5px;line-height:1.55}
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art{max-width:560px;margin-left:24px}
+  .hero-strip{grid-template-columns:1fr}
+  .hero-strip div,.hero-strip div+div{padding:20px 0;border-left:0;border-bottom:1px solid var(--rule)}
+}
+@media (max-width:560px){
+  .hero-art{margin-left:0;margin-top:20px}
+  .hero-art .sq{width:40px;height:40px;top:-20px;left:auto;right:24px}
+  .hero-art .qc{width:80px;height:80px;right:-30px;bottom:-40px}
+  .queue{padding:24px 20px 22px}
+  .queue li{grid-template-columns:minmax(0,1fr) auto;row-gap:4px}
+  .queue time{grid-column:1/-1}
+}
+
+/* --- 2. symptoms --- */
+.signs-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,5vw,80px)}
+.signs-head{align-self:start;position:sticky;top:120px}
+.signs-head p{margin-top:22px;max-width:22em}
+.signs-list{list-style:none;border-top:2px solid var(--teal)}
+.signs-list li{display:grid;grid-template-columns:78px minmax(0,1fr) 190px;gap:10px 24px;padding:30px 16px 30px 0;border-bottom:1px solid var(--rule);transition:background-color .2s,padding .2s}
+.signs-list li:hover{background:var(--cream);padding-left:16px}
+.s-n{font:400 56px/0.9 var(--serif);color:var(--rule);letter-spacing:-.03em;transition:color .2s}
+.signs-list li:hover .s-n{color:var(--magenta)}
+.s-text{font:500 clamp(22px,2.2vw,28px)/1.22 var(--serif);color:var(--teal);margin:0 0 12px;letter-spacing:-.01em}
+.s-under{margin:0;font-size:15px;line-height:1.55}
+.s-under b{font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--magenta-ink);margin-right:8px}
+.s-layer{align-self:start;display:flex;gap:10px;align-items:center;font:600 13px/1.3 var(--sans);color:var(--teal);text-decoration:none;padding-top:8px}
+.s-layer:hover{text-decoration:underline}
+.s-layer small{display:block;font:500 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted-ink);margin-bottom:4px}
+.signs-tally{margin:36px 0 0;font:italic 400 clamp(22px,2.2vw,28px)/1.3 var(--serif);color:var(--teal);max-width:26em}
+@media (max-width:960px){
+  .signs-grid{grid-template-columns:1fr}
+  .signs-head{position:static}
+  .signs-list li{grid-template-columns:56px minmax(0,1fr)}
+  .s-layer{grid-column:2;padding-top:0}
+  .s-n{font-size:40px}
+}
+
+/* --- 3. diagnosis --- */
+.diag{background:var(--teal);color:rgba(255,255,255,.88);position:relative;overflow:hidden}
+.diag h2{color:#fff;max-width:13em}
+.diag-intro{font-size:clamp(18px,1.6vw,21px);max-width:30em;margin:28px 0 0;color:#fff}
+.drift{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));margin-top:clamp(56px,7vw,96px);position:relative}
+.drift::before{content:"";position:absolute;left:0;right:0;top:40px;border-top:1px solid rgba(255,255,255,.35)}
+.drift li{position:relative;padding:68px 26px 0 0}
+.drift li::before{content:"";position:absolute;top:34px;left:0;width:13px;height:13px;border-radius:50%;background:var(--aqua)}
+.drift .hc{position:absolute;top:0;left:0;font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--aqua)}
+.drift p{font-size:15px;line-height:1.55;margin:0 0 12px}
+.drift .ok{font:italic 400 18px/1.2 var(--serif);color:var(--gold)}
+.drift li.now::before{width:22px;height:22px;top:29px;border-radius:0;background:var(--magenta)}
+.drift li.now .hc{color:#fff}
+.drift li.now p{color:#fff;font-size:16px}
+.drift li.now b{color:var(--gold);font-weight:600}
+.diag-close{margin:clamp(56px,7vw,88px) 0 0;padding-top:34px;border-top:1px solid rgba(255,255,255,.35);font:400 clamp(26px,3vw,40px)/1.2 var(--serif);color:#fff;max-width:24em;letter-spacing:-.01em}
+.diag-close em{color:var(--gold)}
+.diag .deco{position:absolute;right:-70px;top:-70px;width:220px;height:220px;border-radius:50%;border:44px solid var(--aqua);opacity:.9}
+@media (max-width:960px){
+  .drift{grid-template-columns:1fr}
+  .drift::before{left:6px;right:auto;top:8px;bottom:0;border-top:0;border-left:1px solid rgba(255,255,255,.35)}
+  .drift li{padding:0 0 34px 44px}
+  .drift li::before{top:4px;left:0}
+  .drift li.now::before{top:0;left:-4px}
+  .drift .hc{position:static;display:block;margin-bottom:8px}
+  .diag .deco{width:140px;height:140px;border-width:28px;right:-60px;top:-60px}
+}
+
+/* --- 4. what we build --- */
+.build-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,5vw,80px);align-items:end;margin-bottom:clamp(48px,6vw,80px)}
+.build-head p{margin:0}
+.stack{display:grid;gap:0}
+.band{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;align-items:center;padding:22px 26px;background:var(--pale)}
+.band ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 26px;font:500 15px/1.4 var(--sans);color:var(--teal)}
+.band-bottom{background:#fff;border:1px dashed var(--muted)}
+.band-arrow{font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted-ink);padding:14px 0 14px 26px;display:flex;gap:12px;align-items:center}
+.band-arrow::before{content:"";width:1px;height:26px;background:var(--teal)}
+.zone{border:3px solid var(--aqua);position:relative;padding:0 26px}
+.zone-label{position:absolute;top:-13px;left:20px;background:#fff;padding:0 10px;font:700 12px/26px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin:0}
+.strata{list-style:none}
+.strata li{display:grid;grid-template-columns:52px minmax(170px,230px) minmax(0,1fr) minmax(150px,210px);gap:8px 24px;padding:24px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.strata li:last-child{border-bottom:0}
+.strata li:first-child{padding-top:34px}
+.l-n{display:flex;align-items:center;gap:10px;font:600 13px/1 var(--sans);color:var(--muted-ink)}
+.strata h3{font:500 22px/1.2 var(--serif);letter-spacing:-.01em}
+.strata p{margin:0;font-size:15px;line-height:1.55}
+.strata .feeds{font-size:13px;color:var(--muted-ink)}
+.strata .feeds b{color:var(--teal);font-weight:600}
+.strata li:target{background:var(--cream);box-shadow:-26px 0 0 var(--cream),26px 0 0 var(--cream)}
+.connect{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,80px);margin-top:clamp(56px,7vw,96px);align-items:center}
+.connect blockquote{margin:0;font:400 clamp(26px,2.8vw,38px)/1.2 var(--serif);color:var(--teal);letter-spacing:-.01em}
+.connect .note{margin-top:20px;font-size:15px;max-width:28em}
+.mx-wrap{max-width:100%}
+.mx{table-layout:fixed;font:500 13px/1.2 var(--sans);color:var(--teal)}
+.mx caption{caption-side:top;text-align:left;margin-bottom:12px}
+.mx th{font-weight:600;padding:6px 4px}
+.mx thead th{text-align:center;vertical-align:bottom}
+.mx thead th .g{display:block;margin:0 auto 6px}
+.mx thead th:first-child{width:136px}
+.mx tbody th{text-align:left;padding-right:12px;white-space:nowrap}
+.mx td{height:44px;border:1px solid var(--rule);text-align:center;position:relative}
+.mx td.on::after{content:"";position:absolute;inset:0;margin:auto;width:14px;height:14px;border-radius:50%;background:var(--teal)}
+.mx td.self{background:repeating-linear-gradient(45deg,#fff 0 4px,var(--pale) 4px 8px)}
+.mx tr:hover td.on::after{background:var(--magenta)}
+@media (max-width:960px){
+  .build-head,.connect{grid-template-columns:1fr}
+  .band{grid-template-columns:1fr;gap:10px}
+  .strata li{grid-template-columns:40px minmax(0,1fr)}
+  .strata li>p{grid-column:2}
+  .zone{padding:0 18px}
+  .strata li:target{box-shadow:-18px 0 0 var(--cream),18px 0 0 var(--cream)}
+}
+@media (max-width:480px){.mx thead th:first-child{width:92px}.mx tbody th{white-space:normal;font-size:12px}}
+
+/* --- 5. review --- */
+.review{background:var(--cream)}
+.review-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(40px,6vw,96px);align-items:start}
+.review-intro .lede{margin-top:24px}
+.review-intro p+p{font-size:16px}
+.review-intro .arrow-link{margin-top:14px}
+.sheet{background:#fff;border:1px solid var(--rule);border-top:6px solid var(--teal)}
+.sheet-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 20px;padding:16px 26px;border-bottom:1px solid var(--rule)}
+.sheet-cols{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);padding:26px}
+.sheet h3{font:600 12px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin:0 0 16px;padding-bottom:12px;border-bottom:2px solid var(--teal)}
+.checks,.outs{list-style:none}
+.checks li{display:grid;grid-template-columns:16px minmax(0,1fr);gap:12px;padding:9px 0;border-bottom:1px solid var(--rule);font-size:15px;line-height:1.4}
+.checks li::before{content:"";width:12px;height:12px;border:1.5px solid var(--teal);margin-top:4px}
+.checks strong{color:var(--teal);font-weight:600;display:block}
+.checks span{font-size:13px;color:var(--muted-ink)}
+.sheet-arrow{display:flex;align-items:center;justify-content:center;color:var(--magenta);font:400 30px/1 var(--serif)}
+.outs{counter-reset:o}
+.outs li{counter-increment:o;display:grid;grid-template-columns:34px minmax(0,1fr);padding:11px 0;border-bottom:1px solid var(--rule);font:500 15px/1.4 var(--sans);color:var(--teal)}
+.outs li::before{content:counter(o,decimal-leading-zero);font:500 20px/1 var(--serif);color:var(--magenta-ink)}
+.sheet-foot{padding:18px 26px;background:var(--pale);font-size:14.5px;line-height:1.55;margin:0}
+.sheet-foot strong{color:var(--teal)}
+@media (max-width:960px){.review-grid{grid-template-columns:1fr}}
+@media (max-width:640px){.sheet-cols{grid-template-columns:1fr;padding:20px}.sheet-arrow{transform:rotate(90deg);height:50px}.sheet-head,.sheet-foot{padding-left:20px;padding-right:20px}}
+
+/* --- 6. the work --- */
+.work-intro{padding-top:clamp(80px,10vw,144px);padding-bottom:clamp(48px,6vw,72px)}
+.work-intro h2{max-width:14em}
+.work-intro .lede{margin-top:28px}
+.work-index{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(40px,5vw,64px);border-top:2px solid var(--teal)}
+.work-index a{display:block;padding:18px 18px 18px 0;text-decoration:none;color:var(--teal);font:500 15px/1.35 var(--sans);border-bottom:1px solid var(--rule);height:100%}
+.work-index a:hover{background:var(--cream)}
+.work-index b{display:block;font:400 34px/1 var(--serif);color:var(--magenta);margin-bottom:10px}
+@media (max-width:760px){.work-index{grid-template-columns:1fr 1fr}.work-index a{padding-right:12px}}
+.w{padding:clamp(64px,8vw,112px) 0;border-top:1px solid var(--rule)}
+.w-num{font:600 12px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted-ink);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.w h3.h-sub{margin-bottom:18px}
+.finding{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;margin:30px 0;padding:20px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.f-big{font:500 clamp(64px,7vw,96px)/.85 var(--serif);color:var(--magenta);letter-spacing:-.04em}
+.finding p{margin:0;font-size:15px;line-height:1.45;color:var(--teal)}
+.finding .label{display:block;margin-bottom:6px}
+.w .disclaimer{margin-top:40px}
+
+/* --- 7. what changes --- */
+.changes-head{max-width:760px;margin-bottom:clamp(48px,6vw,72px)}
+.changes{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,80px)}
+.changes li{padding:34px 0 40px;border-top:2px solid var(--teal);display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 22px}
+.changes .g{margin-top:14px;width:18px;height:18px}
+.changes .g-6{height:9px;margin-top:23px}
+.changes h3{font:500 clamp(28px,3vw,40px)/1.08 var(--serif);letter-spacing:-.02em;margin-bottom:12px}
+.changes p{margin:0;grid-column:2;font-size:16px}
+.changes .seen{margin-top:16px;font-size:14px;color:var(--teal);padding-top:12px;border-top:1px solid var(--rule)}
+.changes .seen b{font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted-ink);display:block;margin-bottom:6px}
+@media (max-width:820px){.changes{grid-template-columns:1fr}}
+
+/* --- 8. adjacent services --- */
+.next{background:var(--cream);padding:clamp(64px,8vw,104px) 0}
+.next-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,5vw,80px)}
+.next-grid h2{font:500 clamp(28px,3vw,40px)/1.1 var(--serif);letter-spacing:-.015em}
+.next-grid .intro p{margin-top:16px;font-size:15.5px}
+.routes{list-style:none;border-top:1px solid var(--teal)}
+.routes a{display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:8px 32px;padding:24px 0;border-bottom:1px solid var(--rule);text-decoration:none;color:var(--body);align-items:baseline;transition:padding .2s,background-color .2s}
+.routes a:hover{background:#fff;padding-left:16px;padding-right:16px}
+.routes .if{font-size:16px;line-height:1.5}
+.routes .if b{font:600 11px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted-ink);margin-right:8px}
+.routes .to{font:500 22px/1.2 var(--serif);color:var(--teal);display:flex;justify-content:space-between;gap:12px}
+.routes .to .ar{font-family:var(--sans);transition:transform .2s;color:var(--magenta)}
+.routes a:hover .ar{transform:translateX(5px)}
+@media (max-width:860px){.next-grid{grid-template-columns:1fr}.routes a{grid-template-columns:1fr}}
+
+/* --- 9. final CTA --- */
+.final{background:var(--teal);color:#fff;position:relative;overflow:hidden;padding:clamp(88px,11vw,160px) 0}
+.final h2{color:#fff;max-width:17em;font-size:clamp(34px,4.6vw,62px)}
+.final h2 span{color:var(--aqua)}
+.final p.lede{margin-top:30px;color:rgba(255,255,255,.9)}
+.final .hero-actions{margin-top:40px}
+.final .geo{position:absolute;right:0;bottom:0;width:min(34vw,380px);height:min(34vw,380px);pointer-events:none}
+.final .geo i{position:absolute;display:block}
+.final .geo .a{right:0;bottom:0;width:50%;height:50%;background:var(--gold);border-radius:100% 0 0 0}
+.final .geo .b{right:50%;bottom:0;width:25%;height:25%;background:var(--magenta)}
+.final .geo .c{right:0;bottom:50%;width:25%;height:25%;background:var(--aqua);border-radius:50%}
+.final .wrap{position:relative;z-index:1}
+@media (max-width:760px){.final .geo{opacity:.35}}
+
+/* --- shared service-page extras --- */
+.runs{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(24px,4vw,56px);margin-top:clamp(56px,7vw,96px);counter-reset:r}
+.runs li{counter-increment:r;border-top:2px solid var(--teal);padding-top:18px}
+.runs li::before{content:counter(r,decimal-leading-zero);display:block;font:400 34px/1 var(--serif);color:var(--magenta);margin-bottom:12px}
+.runs h3{font:500 22px/1.2 var(--serif);margin-bottom:8px}
+.runs p{font-size:15px;margin:0}
+.runs .label{display:block;margin-bottom:6px}
+@media (max-width:820px){.runs{grid-template-columns:1fr;gap:28px}}
+.ex{padding:clamp(80px,10vw,144px) 0;border-top:1px solid var(--rule)}
+.ex.tint{background:var(--pale);border-top:0}
+.ex.cream{background:var(--cream);border-top:0}
+.ex-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,80px);align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.ex-head .finding{margin:0}
+.ex-head p.lede{margin:18px 0 0}
+@media (max-width:900px){.ex-head{grid-template-columns:minmax(0,1fr)}}
+.ex .disclaimer{margin-top:32px}
+.st{display:inline-flex;align-items:center;gap:7px;font:600 12px/1.25 var(--sans);color:var(--teal);white-space:nowrap}
+.st::before{content:"";width:9px;height:9px;flex:none;background:var(--teal)}
+.st.gap::before{background:var(--magenta)}
+.st.chk::before{background:var(--gold);transform:rotate(45deg)}
+.st.wip::before{background:transparent;border:2px solid var(--teal)}
+.stack-tbl{font-size:14px;line-height:1.45;border-top:2px solid var(--teal)}
+.stack-tbl th,.stack-tbl td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.stack-tbl thead th{font:600 11px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted-ink)}
+.stack-tbl tbody th{font-weight:600;color:var(--teal)}
+.stack-tbl td.id{font:600 12px/1.45 var(--sans);color:var(--muted-ink);white-space:nowrap}
+@media (max-width:820px){
+  .stack-tbl thead{display:none}.stack-tbl,.stack-tbl tbody,.stack-tbl tfoot,.stack-tbl tr,.stack-tbl th,.stack-tbl td{display:block}
+  .stack-tbl tr{padding:14px 0;border-bottom:1px solid var(--rule)}.stack-tbl th,.stack-tbl td{border:0;padding:3px 0}
+  .stack-tbl td[data-label]::before{content:attr(data-label) ": ";font-weight:600;color:var(--teal)}
+}
+
+/* ===== Executive Services: example artifact ===== */
+.weeks{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)}
+.wk{background:#fff;border:1px solid var(--teal);padding:18px 18px 16px}
+.wk-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-bottom:14px}
+.wk-h h3{font:500 24px/1.1 var(--serif)}
+.wk-h b{font:600 12px/1.3 var(--sans);color:var(--magenta-ink)}
+.wk.after .wk-h b{color:var(--teal)}
+.cal{display:grid;grid-template-columns:34px repeat(5,minmax(0,1fr));gap:4px}
+.hrs{display:grid;grid-template-rows:18px repeat(20,11px);font:500 10px/1 var(--sans);color:var(--muted-ink)}
+.hrs span{grid-row:span 2}
+.day{display:grid;grid-template-rows:18px auto}
+.dn{font:600 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--teal);text-align:center}
+.slots{display:grid;grid-template-rows:repeat(20,11px);background:repeating-linear-gradient(180deg,var(--cream) 0 21px,var(--rule) 21px 22px)}
+.slots i{display:block;margin:1px 2px}
+.b-m{background:var(--teal)}
+.b-a{background:var(--gold)}
+.b-w{background:var(--aqua)}
+.b-f{background:repeating-linear-gradient(135deg,var(--magenta) 0 2px,transparent 2px 5px);border:1px solid var(--magenta)}
+.wk-key{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font:500 12.5px/1.3 var(--sans);color:var(--teal)}
+.wk-key li{display:flex;gap:8px;align-items:center}
+.wk-key i{display:inline-block;width:14px;height:10px}
+@media (max-width:900px){.weeks{grid-template-columns:1fr}}
+.led-h{font:500 26px/1.2 var(--serif);margin:clamp(40px,5vw,56px) 0 14px}
+.stack-tbl td.n,.stack-tbl tfoot td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.stack-tbl tfoot td{font-weight:700;color:var(--teal);border-top:2px solid var(--teal);border-bottom:0;padding-top:13px}
+.touch{display:inline-block;font:700 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border:1.5px solid var(--teal);color:var(--teal)}
+.touch.none{border-color:var(--rule);color:var(--muted-ink)}
+@media (max-width:820px){.stack-tbl tfoot td:empty{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Operationary home">
+      <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="0" y="0" width="18" height="18" fill="#0F4A56"/><path d="M22 18V0a18 18 0 0 1 18 18Z" fill="#2CC5C9"/><path d="M9 22l9 18H0Z" fill="#FC00AE"/><circle cx="31" cy="31" r="9" fill="#FCBB57"/></svg>
+      Operationary
+    </a>
+    <nav aria-label="Main">
+      <ul class="menu">
+        <li class="has-sub"><a href="/who-we-serve">Who We Serve</a>
+          <ul class="sub">
+            <li><a href="/for-founders">For Founders</a></li>
+            <li><a href="/for-ops-leaders">For Ops Leaders</a></li>
+          </ul>
+        </li>
+        <li class="has-sub in-section"><a href="/how-we-serve">How We Serve</a>
+          <ul class="sub">
+            <li><a href="hr-administration.html">HR Administration</a></li>
+            <li><a href="fractional-hr.html">Fractional HR Consulting</a></li>
+            <li><a href="fractional-operations-consulting.html">Fractional Operations Consulting</a></li>
+            <li><a href="recruitment.html">Recruitment</a></li>
+            <li><a href="graphic-design.html">Graphic Design</a></li>
+            <li><a href="executive-services.html" aria-current="page">Executive Services</a></li>
+          </ul>
+        </li>
+        <li><a href="/how-we-price">How We Price</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/resources">Resources</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-aqua nav-cta" href="/contact">Book a discovery call</a>
+    <details class="mnav">
+      <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+      <div class="mnav-panel">
+        <div class="grp"><p class="label">Who We Serve</p>
+          <ul><li><a href="/for-founders">For Founders</a></li><li><a href="/for-ops-leaders">For Ops Leaders</a></li></ul>
+        </div>
+        <div class="grp"><p class="label">How We Serve</p>
+          <ul>
+            <li><a href="hr-administration.html">HR Administration</a></li>
+            <li><a href="fractional-hr.html">Fractional HR Consulting</a></li>
+            <li><a href="fractional-operations-consulting.html">Fractional Operations Consulting</a></li>
+            <li><a href="recruitment.html">Recruitment</a></li>
+            <li><a href="graphic-design.html">Graphic Design</a></li>
+            <li><a href="executive-services.html" aria-current="page">Executive Services</a></li>
+          </ul>
+        </div>
+        <div class="grp">
+          <ul><li><a href="/how-we-price">How We Price</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li><a href="/resources">Resources</a></li></ul>
+        </div>
+        <a class="btn btn-aqua" href="/contact">Book a discovery call</a>
+      </div>
+    </details>
+  </div>
+</header>
+<main id="main">
+
+<section class="hero" aria-labelledby="hero-h">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/how-we-serve">How We Serve</a><span aria-hidden="true">/</span><span aria-current="page">Executive Services</span></nav>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Executive Services</p>
+        <h1 id="hero-h" class="h-display">Your calendar is deciding <em>what you work on.</em></h1>
+        <p class="lede">Executive support for founders and leadership teams: calendar and inbox, meeting preparation and follow-through, board and investor logistics, and the projects that keep moving to next week.</p>
+        <div class="hero-actions">
+          <a class="btn btn-aqua" href="/contact">Book a discovery call</a>
+          <a class="arrow-link" href="#example">See an example <span class="ar" aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <span class="qc" aria-hidden="true"></span>
+        <div class="queue" role="figure" aria-label="Illustration: a founder’s Tuesday as it actually went">
+          <p class="q-head"><span>Founder’s Tuesday</span><span>As it went</span></p>
+          <ol><li><time>7:40</time><p>212 unread. Three of them matter.</p><span class="q-tag">Inbox</span></li><li><time>9:00</time><p>A meeting with no agenda, running over.</p><span class="q-tag">Meetings</span></li><li><time>11:30</time><p>Rescheduling a vendor call for the third time.</p><span class="q-tag">Scheduling</span></li><li><time>1:00</time><p>Finding receipts for last month’s expenses.</p><span class="q-tag">Admin</span></li><li><time>3:00</time><p>Board deck due Friday. The numbers aren’t in.</p><span class="q-tag">Board</span></li><li><time>5:30</time><p>Monday’s follow-ups still unsent.</p><span class="q-tag">Follow-up</span></li></ol>
+          <p class="q-foot"><b>Ten</b> hours. Ninety minutes on the business.</p>
+        </div>
+        <span class="sq" aria-hidden="true"></span>
+      </div>
+    </div>
+    <dl class="hero-strip"><div><dt class="label">If you’re the founder</dt><dd>You know what you should be working on. Your week keeps filling up with things that aren’t it.</dd></div><div><dt class="label">If you run operations</dt><dd>Things wait on the founder’s inbox, and you can’t fix that from where you sit.</dd></div><div><dt class="label">Usually</dt><dd>Founders and leadership teams at 10–50 person companies without a full-time executive assistant.</dd></div></dl>
+  </div>
+</section>
+
+<section class="sec" id="signs" aria-labelledby="signs-h">
+  <div class="wrap signs-grid">
+    <header class="signs-head">
+      <p class="eyebrow">Recognition</p>
+      <h2 id="signs-h" class="h-section">You may be here because…</h2>
+      <p>Six signs that founder time is being spent on work with no decision in it.</p>
+    </header>
+    <div>
+      <ol class="signs-list">
+        <li><span class="s-n" aria-hidden="true">01</span>
+          <div><p class="s-text">Follow-ups only happen when you send them yourself.</p><p class="s-under"><b>Underneath</b>Nobody owns what happens after a meeting.</p></div>
+          <a class="s-layer" href="#layer-3"><i class="g g-3" aria-hidden="true"></i><span><small>Layer</small>Meeting prep + follow-through</span></a></li>
+        <li><span class="s-n" aria-hidden="true">02</span>
+          <div><p class="s-text">Board prep starts three days before the board meeting.</p><p class="s-under"><b>Underneath</b>Collecting materials isn’t on anyone’s calendar.</p></div>
+          <a class="s-layer" href="#layer-4"><i class="g g-4" aria-hidden="true"></i><span><small>Layer</small>Board + investor logistics</span></a></li>
+        <li><span class="s-n" aria-hidden="true">03</span>
+          <div><p class="s-text">Your inbox is a to-do list other people write.</p><p class="s-under"><b>Underneath</b>There’s no triage between you and everyone else.</p></div>
+          <a class="s-layer" href="#layer-2"><i class="g g-2" aria-hidden="true"></i><span><small>Layer</small>Inbox triage</span></a></li>
+        <li><span class="s-n" aria-hidden="true">04</span>
+          <div><p class="s-text">Scheduling one meeting takes eleven emails.</p><p class="s-under"><b>Underneath</b>Your calendar has no rules, so every request is a negotiation.</p></div>
+          <a class="s-layer" href="#layer-1"><i class="g g-1" aria-hidden="true"></i><span><small>Layer</small>Calendar management</span></a></li>
+        <li><span class="s-n" aria-hidden="true">05</span>
+          <div><p class="s-text">Expenses, travel and renewals land on you.</p><p class="s-under"><b>Underneath</b>Small admin never got handed off because each piece is small.</p></div>
+          <a class="s-layer" href="#layer-5"><i class="g g-5" aria-hidden="true"></i><span><small>Layer</small>Travel, expenses + renewals</span></a></li>
+        <li><span class="s-n" aria-hidden="true">06</span>
+          <div><p class="s-text">The projects that matter most keep moving to next week.</p><p class="s-under"><b>Underneath</b>Nobody protects the time to do them.</p></div>
+          <a class="s-layer" href="#layer-6"><i class="g g-6" aria-hidden="true"></i><span><small>Layer</small>Special projects</span></a></li>
+      </ol>
+      <p class="signs-tally">If three of these sound familiar, you don’t need to work longer. You need someone else to own the logistics.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec diag on-dark" aria-labelledby="diag-h">
+  <span class="deco" aria-hidden="true"></span>
+  <div class="wrap">
+    <p class="eyebrow">The deeper diagnosis</p>
+    <h2 id="diag-h" class="h-display">Nobody delegates the first hour. Then it’s ten.</h2>
+    <p class="diag-intro">Each task takes five minutes, so it never seems worth handing off. Added up, they take the week.</p>
+    <ol class="drift"><li><span class="hc">Month 1</span><p>Scheduling your own meetings. It’s quicker than explaining.</p><span class="ok">True.</span></li><li><span class="hc">Month 6</span><p>Answering every email yourself, to keep things moving.</p><span class="ok">Mostly true.</span></li><li><span class="hc">Year 1</span><p>Collecting board materials, the week before, every quarter.</p><span class="ok">Manageable.</span></li><li><span class="hc">Year 2</span><p>Booking travel, chasing receipts, renewing software.</p><span class="ok">Small things.</span></li><li class="now"><span class="hc">Now</span><p>About <b>a quarter of the week</b> goes to work with <b>no decision in it</b>. The important projects get what’s left.</p></li></ol>
+    <p class="diag-close">The fix isn’t better time management. <em>It’s handing the logistics to someone who owns them.</em></p>
+  </div>
+</section>
+
+<section class="sec" id="build" aria-labelledby="build-h">
+  <div class="wrap">
+    <div class="build-head">
+      <div>
+        <p class="eyebrow">What Operationary does</p>
+        <h2 id="build-h" class="h-section">We run the logistics. You keep the decisions.</h2>
+      </div>
+      <p class="lede">Executive support built around rules rather than requests: what goes on the calendar, what reaches the inbox, what happens after every meeting and when board prep starts.</p>
+    </div>
+    <div class="stack">
+      <div class="band"><span class="label">What stays with you</span><ul><li>Decisions</li><li>Relationships</li><li>Priorities</li><li>The narrative</li></ul></div>
+      <div class="band-arrow" aria-hidden="true">Supported by</div>
+      <div class="zone">
+        <p class="zone-label">Executive support · what we run</p>
+        <ol class="strata">
+          <li id="layer-1"><span class="l-n"><i class="g g-1" aria-hidden="true"></i>01</span><h3>Calendar management</h3>
+            <p>Protected focus time, meeting rules, buffers and a default length for each type of meeting.</p>
+            <p class="feeds">Feeds <b>03</b> prep · <b>06</b> projects</p></li>
+          <li id="layer-2"><span class="l-n"><i class="g g-2" aria-hidden="true"></i>02</span><h3>Inbox triage</h3>
+            <p>Rules for what reaches you, what gets a drafted reply and what gets handled without you.</p>
+            <p class="feeds">Feeds <b>03</b> follow-ups · <b>05</b> admin</p></li>
+          <li id="layer-3"><span class="l-n"><i class="g g-3" aria-hidden="true"></i>03</span><h3>Meeting prep + follow-through</h3>
+            <p>Agendas before, notes and action items after, follow-ups sent the same day.</p>
+            <p class="feeds">Feeds <b>04</b> board · your team</p></li>
+          <li id="layer-4"><span class="l-n"><i class="g g-4" aria-hidden="true"></i>04</span><h3>Board + investor logistics</h3>
+            <p>A calendar for board meetings, materials collected on schedule, minutes and follow-ups tracked.</p>
+            <p class="feeds">Feeds <b>03</b> · leadership</p></li>
+          <li id="layer-5"><span class="l-n"><i class="g g-5" aria-hidden="true"></i>05</span><h3>Travel, expenses + renewals</h3>
+            <p>Booked, filed and renewed on a schedule, with your approval where it matters.</p>
+            <p class="feeds">Feeds finance</p></li>
+          <li id="layer-6"><span class="l-n"><i class="g g-6" aria-hidden="true"></i>06</span><h3>Special projects</h3>
+            <p>The projects that keep slipping: an office move, a vendor selection, an offsite. Planned and run.</p>
+            <p class="feeds">Feeds <b>01</b> calendar</p></li>
+        </ol>
+      </div>
+      <div class="band-arrow" aria-hidden="true">Working through</div>
+      <div class="band band-bottom"><span class="label">Working through</span><ul><li>Your calendar</li><li>Your inbox</li><li>Board portal</li><li>Expense and travel tools</li></ul></div>
+    </div>
+    <ol class="runs" aria-label="How the engagement runs"><li><span class="label">Weeks 1–2</span><h3>Watch and map</h3><p>We track two weeks of your calendar and inbox and sort every task into keep, delegate and drop.</p></li><li><span class="label">Weeks 3–4</span><h3>Set the rules</h3><p>Calendar rules, inbox rules and the meeting follow-through routine, agreed with you.</p></li><li><span class="label">Ongoing</span><h3>Run it</h3><p>We run the day-to-day and review the week with you in fifteen minutes on Fridays.</p></li></ol>
+  </div>
+</section>
+
+<section class="ex tint" id="example" aria-labelledby="ex-h">
+  <div class="wrap">
+    <div class="ex-head">
+      <div>
+        <p class="eyebrow">See an example</p>
+        <h2 id="ex-h" class="h-section">The same founder’s week, before and after.</h2>
+        <p class="lede">The founder of a 33-person consultancy. Two weeks of calendar and inbox were mapped before anything changed.</p>
+      </div>
+      <div class="finding"><span class="f-big">11.5</span><p><span class="label">Key finding</span>hours a week of founder time went to work with no decision in it.</p></div>
+    </div>
+    <div class="weeks">
+      <div class="wk before" role="group" aria-label="Founder calendar before: fragmented">
+        <div class="wk-h"><h3>Before</h3><b>No focus time on the calendar</b></div>
+        <div class="cal"><div class="hrs" aria-hidden="true"><span style="grid-row:1"></span><span>8am</span><span>9am</span><span>10am</span><span>11am</span><span>12pm</span><span>1pm</span><span>2pm</span><span>3pm</span><span>4pm</span><span>5pm</span></div><div class="day"><span class="dn">Mon</span><div class="slots"><i class="b-a" style="grid-row:1/3"><span class="sr">Admin 8–9</span></i><i class="b-m" style="grid-row:3/5"><span class="sr">Meeting 9–10</span></i><i class="b-f" style="grid-row:5/6"><span class="sr">Fragment 10–10.5</span></i><i class="b-m" style="grid-row:6/8"><span class="sr">Meeting 10.5–11.5</span></i><i class="b-a" style="grid-row:9/11"><span class="sr">Admin 12–13</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-f" style="grid-row:14/15"><span class="sr">Fragment 14.5–15</span></i><i class="b-m" style="grid-row:15/17"><span class="sr">Meeting 15–16</span></i><i class="b-a" style="grid-row:18/20"><span class="sr">Admin 16.5–17.5</span></i></div></div><div class="day"><span class="dn">Tue</span><div class="slots"><i class="b-a" style="grid-row:1/2"><span class="sr">Admin 8–8.5</span></i><i class="b-f" style="grid-row:3/4"><span class="sr">Fragment 9–9.5</span></i><i class="b-m" style="grid-row:4/6"><span class="sr">Meeting 9.5–10.5</span></i><i class="b-m" style="grid-row:7/9"><span class="sr">Meeting 11–12</span></i><i class="b-f" style="grid-row:10/11"><span class="sr">Fragment 12.5–13</span></i><i class="b-m" style="grid-row:11/14"><span class="sr">Meeting 13–14.5</span></i><i class="b-a" style="grid-row:15/16"><span class="sr">Admin 15–15.5</span></i><i class="b-m" style="grid-row:17/19"><span class="sr">Meeting 16–17</span></i><i class="b-a" style="grid-row:19/21"><span class="sr">Admin 17–18</span></i></div></div><div class="day"><span class="dn">Wed</span><div class="slots"><i class="b-a" style="grid-row:1/3"><span class="sr">Admin 8–9</span></i><i class="b-f" style="grid-row:4/5"><span class="sr">Fragment 9.5–10</span></i><i class="b-m" style="grid-row:5/7"><span class="sr">Meeting 10–11</span></i><i class="b-m" style="grid-row:8/10"><span class="sr">Meeting 11.5–12.5</span></i><i class="b-f" style="grid-row:11/12"><span class="sr">Fragment 13–13.5</span></i><i class="b-m" style="grid-row:13/15"><span class="sr">Meeting 14–15</span></i><i class="b-a" style="grid-row:16/17"><span class="sr">Admin 15.5–16</span></i><i class="b-m" style="grid-row:17/19"><span class="sr">Meeting 16–17</span></i></div></div><div class="day"><span class="dn">Thu</span><div class="slots"><i class="b-f" style="grid-row:1/2"><span class="sr">Fragment 8–8.5</span></i><i class="b-m" style="grid-row:3/6"><span class="sr">Meeting 9–10.5</span></i><i class="b-a" style="grid-row:7/8"><span class="sr">Admin 11–11.5</span></i><i class="b-m" style="grid-row:9/11"><span class="sr">Meeting 12–13</span></i><i class="b-f" style="grid-row:12/13"><span class="sr">Fragment 13.5–14</span></i><i class="b-m" style="grid-row:13/16"><span class="sr">Meeting 14–15.5</span></i><i class="b-a" style="grid-row:17/19"><span class="sr">Admin 16–17</span></i><i class="b-f" style="grid-row:19/20"><span class="sr">Fragment 17–17.5</span></i></div></div><div class="day"><span class="dn">Fri</span><div class="slots"><i class="b-a" style="grid-row:1/3"><span class="sr">Admin 8–9</span></i><i class="b-m" style="grid-row:4/6"><span class="sr">Meeting 9.5–10.5</span></i><i class="b-f" style="grid-row:7/8"><span class="sr">Fragment 11–11.5</span></i><i class="b-a" style="grid-row:9/11"><span class="sr">Admin 12–13</span></i><i class="b-m" style="grid-row:12/14"><span class="sr">Meeting 13.5–14.5</span></i><i class="b-a" style="grid-row:15/17"><span class="sr">Admin 15–16</span></i><i class="b-f" style="grid-row:18/19"><span class="sr">Fragment 16.5–17</span></i></div></div></div>
+      </div>
+      <div class="wk after" role="group" aria-label="Founder calendar after: protected focus time">
+        <div class="wk-h"><h3>After</h3><b>6 focus blocks of 3 hours or more</b></div>
+        <div class="cal"><div class="hrs" aria-hidden="true"><span style="grid-row:1"></span><span>8am</span><span>9am</span><span>10am</span><span>11am</span><span>12pm</span><span>1pm</span><span>2pm</span><span>3pm</span><span>4pm</span><span>5pm</span></div><div class="day"><span class="dn">Mon</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:7/9"><span class="sr">Meeting 11–12</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-w" style="grid-row:13/17"><span class="sr">Focus work 14–16</span></i><i class="b-a" style="grid-row:17/18"><span class="sr">Admin 16–16.5</span></i></div></div><div class="day"><span class="dn">Tue</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-m" style="grid-row:13/15"><span class="sr">Meeting 14–15</span></i><i class="b-m" style="grid-row:15/17"><span class="sr">Meeting 15–16</span></i><i class="b-m" style="grid-row:17/19"><span class="sr">Meeting 16–17</span></i></div></div><div class="day"><span class="dn">Wed</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:7/9"><span class="sr">Meeting 11–12</span></i><i class="b-w" style="grid-row:11/17"><span class="sr">Focus work 13–16</span></i><i class="b-a" style="grid-row:17/18"><span class="sr">Admin 16–16.5</span></i></div></div><div class="day"><span class="dn">Thu</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-m" style="grid-row:13/15"><span class="sr">Meeting 14–15</span></i><i class="b-m" style="grid-row:15/18"><span class="sr">Meeting 15–16.5</span></i><i class="b-a" style="grid-row:18/19"><span class="sr">Admin 16.5–17</span></i></div></div><div class="day"><span class="dn">Fri</span><div class="slots"><i class="b-w" style="grid-row:1/9"><span class="sr">Focus work 8–12</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-a" style="grid-row:13/14"><span class="sr">Admin 14–14.5</span></i></div></div></div>
+      </div>
+    </div>
+    <ul class="wk-key"><li><i class="b-w"></i>Focus work</li><li><i class="b-m"></i>Meeting</li><li><i class="b-a"></i>Admin</li><li><i class="b-f"></i>Gap too short to use</li></ul>
+    <h3 class="led-h">Delegation ledger</h3>
+    <table class="stack-tbl">
+      <caption class="sr">Delegation ledger</caption>
+      <thead><tr><th scope="col">Task</th><th scope="col">Founder hours / week, before</th><th scope="col">Now handled by</th><th scope="col">Founder’s part now</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Inbox triage</th><td class="n" data-label="Before">4.0</td><td data-label="Now">Executive assistant</td><td data-label="Founder’s part"><span class="touch">Reviews drafted replies</span></td></tr>
+        <tr><th scope="row">Scheduling</th><td class="n" data-label="Before">2.5</td><td data-label="Now">Executive assistant</td><td data-label="Founder’s part"><span class="touch none">None</span></td></tr>
+        <tr><th scope="row">Board materials collection</th><td class="n" data-label="Before">2.0</td><td data-label="Now">Executive assistant, on a schedule</td><td data-label="Founder’s part"><span class="touch">Writes the narrative</span></td></tr>
+        <tr><th scope="row">Expenses + receipts</th><td class="n" data-label="Before">1.5</td><td data-label="Now">Executive assistant</td><td data-label="Founder’s part"><span class="touch">Approves monthly</span></td></tr>
+        <tr><th scope="row">Meeting follow-ups</th><td class="n" data-label="Before">1.5</td><td data-label="Now">Executive assistant, same day</td><td data-label="Founder’s part"><span class="touch">Approves before sending</span></td></tr>
+      </tbody>
+      <tfoot><tr><td>Total</td><td class="n">11.5</td><td></td><td></td></tr></tfoot>
+    </table>
+    <p class="disclaimer">This is a sanitized demonstration of the structure of the work. Names, dates and figures have been changed.</p>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="changes-h">
+  <div class="wrap">
+    <div class="changes-head">
+      <p class="eyebrow">What changes</p>
+      <h2 id="changes-h" class="h-section">Operational outcomes. You can check each one.</h2>
+    </div>
+    <ul class="changes">
+      <li><i class="g g-1" aria-hidden="true"></i><div><h3>Meetings have agendas and owners.</h3></div>
+        <p>Prep goes out before, action items go out after.</p>
+        <p class="seen"><b>You’ll see it when</b>Nobody asks what the meeting is about.</p></li>
+      <li><i class="g g-2" aria-hidden="true"></i><div><h3>Follow-ups go out the same day.</h3></div>
+        <p>Drafted for you, sent with your approval.</p>
+        <p class="seen"><b>You’ll see it when</b>Nothing from Monday is still waiting on Friday.</p></li>
+      <li><i class="g g-3" aria-hidden="true"></i><div><h3>Board prep runs on a schedule.</h3></div>
+        <p>Materials collected weeks ahead, not days.</p>
+        <p class="seen"><b>You’ll see it when</b>The deck is done before the week of the meeting.</p></li>
+      <li><i class="g g-4" aria-hidden="true"></i><div><h3>The founder gets whole hours back.</h3></div>
+        <p>Focus time is on the calendar and defended.</p>
+        <p class="seen"><b>You’ll see it when</b>There are three-hour blocks in the week, and they’re used.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="next" aria-labelledby="next-h">
+  <div class="wrap next-grid">
+    <div class="intro">
+      <p class="eyebrow">Where this work usually leads</p>
+      <h2 id="next-h">Sometimes the work shows a different need.</h2>
+      <p>When it does, it’s usually one of these. Same team, same context.</p>
+    </div>
+    <ul class="routes"><li><a href="fractional-operations-consulting.html"><span class="if"><b>If</b>the calendar is full because every decision routes through you.</span><span class="to">Fractional Operations Consulting <span class="ar" aria-hidden="true">→</span></span></a></li><li><a href="graphic-design.html"><span class="if"><b>If</b>board and investor decks need to look as good as the numbers.</span><span class="to">Graphic Design <span class="ar" aria-hidden="true">→</span></span></a></li><li><a href="hr-administration.html"><span class="if"><b>If</b>HR questions are a big part of what lands in your inbox.</span><span class="to">HR Administration <span class="ar" aria-hidden="true">→</span></span></a></li></ul>
+  </div>
+</section>
+
+<section class="final on-dark" aria-labelledby="final-h">
+  <div class="geo" aria-hidden="true"><i class="a"></i><i class="b"></i><i class="c"></i></div>
+  <div class="wrap">
+    <p class="eyebrow">Start with the situation</p>
+    <h2 id="final-h" class="h-section">You don’t need to know what to hand off yet. <span>Bring us last week’s calendar.</span></h2>
+    <p class="lede">We’ll show you what we’d take on, what you should keep and how many hours that frees up.</p>
+    <div class="hero-actions">
+      <a class="btn btn-aqua" href="/contact">Book a discovery call</a>
+      <a class="arrow-link" href="/how-we-price">How we price <span class="ar" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="logo" href="/" aria-label="Operationary home">
+          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="0" y="0" width="18" height="18" fill="#FFFFFF"/><path d="M22 18V0a18 18 0 0 1 18 18Z" fill="#2CC5C9"/><path d="M9 22l9 18H0Z" fill="#FC00AE"/><circle cx="31" cy="31" r="9" fill="#FCBB57"/></svg>
+          Operationary
+        </a>
+        <p>Fractional operations and people support for small businesses.</p>
+      </div>
+      <div>
+        <h2>Who We Serve</h2>
+        <ul><li><a href="/for-founders">For Founders</a></li><li><a href="/for-ops-leaders">For Ops Leaders</a></li></ul>
+      </div>
+      <div>
+        <h2>How We Serve</h2>
+        <ul>
+          <li><a href="hr-administration.html">HR Administration</a></li>
+          <li><a href="fractional-hr.html">Fractional HR Consulting</a></li>
+          <li><a href="fractional-operations-consulting.html">Fractional Operations Consulting</a></li>
+          <li><a href="recruitment.html">Recruitment</a></li>
+          <li><a href="graphic-design.html">Graphic Design</a></li>
+          <li><a href="executive-services.html">Executive Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul><li><a href="/how-we-price">How We Price</a></li><li><a href="/about">About</a></li><li><a href="/resources">Resources</a></li><li><a href="/contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="f-base"><span>© 2026 Operationary</span><span>Work examples on this site are sanitized demonstrations. Names, dates and figures have been changed.</span></div>
+  </div>
+</footer>
+</body>
+</html>
