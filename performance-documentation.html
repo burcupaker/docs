@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Performance Documentation Standard · Work example | Operationary</title>
+<meta name="description" content="Sanitized work example: a performance documentation standard that separates evidence from opinion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap">
+<!-- Live URL: /work/performance-documentation -->
+<style>
+/* ===== Operationary — shared tokens + site chrome ===== */
+:root{
+  --teal:#0F4A56;
+  --teal-deep:#0A3640;
+  --cream:#FAF8F3;
+  --white:#FFFFFF;
+  --body:#42575C;
+  --muted:#7C9096;
+  --muted-ink:#5B7075;
+  --rule:#DCD9D1;
+  --pale:#E4EEF0;
+  --magenta:#FC00AE;
+  --magenta-ink:#B3007C;
+  --magenta-wash:#FFE6F6;
+  --gold:#FCBB57;
+  --gold-wash:#FFF1DA;
+  --aqua:#2CC5C9;
+  --aqua-wash:#DDF6F7;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --max:1240px;
+  --gut:clamp(16px,4vw,48px);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--white);color:var(--body);font:400 17px/1.6 var(--sans);overflow-x:clip;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+img,svg{max-width:100%}
+a{color:var(--teal);text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible,summary:focus-visible,button:focus-visible{outline:3px solid var(--magenta);outline-offset:3px;border-radius:2px}
+h1,h2,h3,h4{color:var(--teal);margin:0;font-weight:500}
+p{margin:0 0 1em}
+ul,ol{margin:0;padding:0}
+table{border-collapse:collapse;width:100%}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-80px;background:var(--teal);color:#fff;padding:10px 16px;z-index:200;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+.num{font-variant-numeric:tabular-nums}
+
+/* type */
+.eyebrow{font:600 12px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:10px;margin:0 0 22px}
+.eyebrow::before{content:"";width:10px;height:10px;background:var(--magenta);flex:none}
+.on-dark .eyebrow{color:var(--aqua)}
+.h-display{font-family:var(--serif);font-weight:500;font-size:clamp(40px,6.2vw,84px);line-height:1.02;letter-spacing:-.025em}
+.h-section{font-family:var(--serif);font-weight:500;font-size:clamp(34px,4.6vw,60px);line-height:1.05;letter-spacing:-.02em}
+.h-sub{font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.012em}
+.lede{font-size:clamp(18px,1.55vw,20px);line-height:1.55;max-width:34em}
+.label{font:600 11px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--muted-ink)}
+
+/* buttons + links */
+.btn{display:inline-flex;align-items:center;gap:10px;font:600 15px/1 var(--sans);padding:17px 26px;border-radius:6px;text-decoration:none;border:2px solid transparent;transition:background-color .2s,color .2s,border-color .2s}
+.btn-aqua{background:var(--aqua);color:var(--teal)}
+.btn-aqua:hover{background:var(--teal);color:#fff}
+.on-dark .btn-aqua:hover{background:#fff;color:var(--teal)}
+.btn-line{border-color:currentColor;color:var(--teal)}
+.btn-line:hover{background:var(--teal);border-color:var(--teal);color:#fff}
+.arrow-link{font:600 15px/1.3 var(--sans);color:var(--teal);text-decoration:none;display:inline-flex;gap:8px;align-items:center;border-bottom:2px solid var(--gold);padding-bottom:4px;transition:border-color .2s}
+.arrow-link .ar{display:inline-block;transition:transform .2s}
+.arrow-link:hover{border-color:var(--magenta)}
+.arrow-link:hover .ar{transform:translateX(4px)}
+.on-dark .arrow-link{color:#fff}
+
+/* layer glyphs — one shape per layer, used across the page */
+.g{display:inline-block;width:14px;height:14px;flex:none;vertical-align:middle}
+.g-1{background:var(--magenta);border-radius:50%}
+.g-2{background:var(--gold)}
+.g-3{background:var(--aqua);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.g-4{background:var(--teal);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}
+.g-5{background:var(--magenta);border-radius:100% 0 0 0}
+.g-6{background:var(--teal);border-radius:14px 14px 0 0;height:7px;margin-top:7px}
+.on-dark .g-4,.on-dark .g-6{background:#fff}
+
+/* header */
+.site-header{background:#fff;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:60}
+.nav{display:flex;align-items:center;gap:20px;min-height:78px}
+.logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none;color:var(--teal);font:700 21px/1 var(--sans);letter-spacing:-.025em;margin-right:auto}
+.logo svg{width:34px;height:34px;flex:none}
+.menu{display:flex;gap:2px;list-style:none;align-items:center}
+.menu>li{position:relative}
+.menu>li>a{display:block;padding:11px 12px;font:500 15px/1 var(--sans);color:var(--teal);text-decoration:none;border-radius:4px;white-space:nowrap}
+.menu>li>a:hover{background:var(--pale)}
+.menu>li.in-section>a{box-shadow:inset 0 -2px 0 var(--magenta);border-radius:0}
+.has-sub>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:translateY(-3px) rotate(45deg);margin-left:9px}
+.sub{position:absolute;top:100%;left:0;min-width:280px;background:#fff;border:1px solid var(--rule);border-top:3px solid var(--aqua);list-style:none;padding:10px 0;display:none;box-shadow:0 14px 34px rgba(15,74,86,.09)}
+.has-sub:hover .sub,.has-sub:focus-within .sub{display:block}
+.sub a{display:block;padding:10px 22px;font:500 15px/1.3 var(--sans);color:var(--teal);text-decoration:none}
+.sub a:hover{background:var(--pale)}
+.sub a[aria-current]{font-weight:600;background:var(--cream);box-shadow:inset 3px 0 0 var(--magenta)}
+.nav-cta{padding:14px 20px;font-size:14px;margin-left:10px}
+.mnav{display:none}
+.mnav summary{list-style:none;cursor:pointer;font:600 14px/1 var(--sans);color:var(--teal);padding:12px 16px;border:1.5px solid var(--teal);border-radius:6px;display:flex;gap:10px;align-items:center}
+.mnav summary::-webkit-details-marker{display:none}
+.mnav summary .bars{width:16px;height:10px;border-top:2px solid currentColor;border-bottom:2px solid currentColor;position:relative}
+.mnav summary .bars::after{content:"";position:absolute;left:0;right:0;top:2px;border-top:2px solid currentColor}
+.mnav[open] summary{background:var(--teal);color:#fff}
+.mnav-panel{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--rule);padding:10px var(--gut) 28px;max-height:calc(100vh - 78px);overflow:auto;box-shadow:0 18px 30px rgba(15,74,86,.08)}
+.mnav-panel .grp{padding:16px 0;border-bottom:1px solid var(--rule)}
+.mnav-panel .grp p{margin:0 0 8px}
+.mnav-panel ul{list-style:none}
+.mnav-panel a{display:block;padding:8px 0;color:var(--teal);text-decoration:none;font:500 16px/1.3 var(--sans)}
+.mnav-panel a:hover{text-decoration:underline}
+.mnav-panel a[aria-current]{font-weight:700;box-shadow:inset 3px 0 0 var(--magenta);padding-left:12px}
+.mnav-panel .btn{margin-top:20px;display:flex;justify-content:center}
+@media (max-width:1120px){.menu,.nav-cta{display:none}.mnav{display:block}}
+
+/* footer */
+.site-footer{background:var(--teal-deep);color:rgba(255,255,255,.82);padding:72px 0 36px;font-size:15px}
+.site-footer .logo{color:#fff;margin:0 0 16px}
+.f-grid{display:grid;grid-template-columns:1.4fr repeat(3,1fr);gap:40px}
+.f-grid h2{font:600 11px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--aqua);margin:0 0 14px}
+.f-grid ul{list-style:none}
+.f-grid li{margin:0 0 8px}
+.f-grid a{color:#fff;text-decoration:none}
+.f-grid a:hover{text-decoration:underline}
+.f-base{margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:rgba(255,255,255,.66)}
+@media (max-width:860px){.f-grid{grid-template-columns:1fr 1fr}.f-grid>div:first-child{grid-column:1/-1}}
+@media (max-width:440px){.f-grid{grid-template-columns:1fr}}
+
+/* ===== shared pieces for work-example pages ===== */
+.crumbs{font:500 13px/1.5 var(--sans);color:var(--muted-ink);margin:0 0 28px}
+.crumbs a{color:var(--muted-ink)}
+.crumbs a:hover{color:var(--teal)}
+.crumbs span[aria-hidden]{margin:0 8px;color:var(--muted)}
+.disclaimer{border-left:4px solid var(--gold);background:var(--cream);padding:18px 22px;font-size:14px;line-height:1.55;color:var(--body);margin:0}
+.disclaimer strong{color:var(--teal)}
+.disclaimer+.disclaimer{margin-top:12px}
+.disclaimer.legal{border-left-color:var(--magenta)}
+/* ===== Work-example page layout ===== */
+.w-num{font:600 12px/1.3 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted-ink);margin:0 0 18px;display:flex;align-items:center;gap:10px}
+.d-hero{padding:clamp(32px,4.5vw,60px) 0 clamp(56px,7vw,96px);border-bottom:1px solid var(--rule)}
+.d-hero h1{font-size:clamp(38px,5.4vw,72px);max-width:12.5em}
+.d-hero .lede{margin-top:26px}
+.d-hero-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:clamp(40px,6vw,96px);align-items:end}
+.d-facts{margin:0;border-top:2px solid var(--teal)}
+.d-facts>div{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:14.5px;line-height:1.45}
+.d-facts dt{font:600 11px/1.5 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted-ink)}
+.d-facts dd{margin:0;color:var(--teal);font-weight:500}
+.d-key{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center;padding:18px 0;border-bottom:1px solid var(--rule)}
+.f-big{font:500 clamp(64px,7vw,96px)/.85 var(--serif);color:var(--magenta);letter-spacing:-.04em}
+.d-key p{margin:0;font-size:15px;line-height:1.45;color:var(--teal)}
+.d-key .label{display:block;margin-bottom:6px}
+.d-sec{padding:clamp(64px,8vw,112px) 0;border-bottom:1px solid var(--rule)}
+.d-sec.tint{background:var(--pale);border-bottom:0}
+.d-sec.cream{background:var(--cream);border-bottom:0}
+.d-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:clamp(32px,5vw,72px)}
+.d-side{align-self:start;position:sticky;top:112px}
+.d-step{font:400 44px/1 var(--serif);color:var(--magenta);display:block;margin-bottom:14px;letter-spacing:-.02em}
+.d-side h2{font:500 clamp(26px,2.6vw,34px)/1.12 var(--serif);letter-spacing:-.01em}
+.d-side p{font-size:15px;margin:14px 0 0}
+.d-main{min-width:0}
+.d-note{font-size:14px;color:var(--muted-ink);margin:14px 0 0}
+@media (max-width:960px){.d-row,.d-hero-grid{grid-template-columns:minmax(0,1fr)}.d-side{position:static}}
+.d-end{padding:clamp(56px,7vw,88px) 0 clamp(64px,8vw,104px)}
+.pager{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--teal);margin-top:48px}
+.pager a{display:block;padding:22px 20px 22px 0;text-decoration:none;border-bottom:1px solid var(--rule);color:var(--teal)}
+.pager a+a{text-align:right;padding:22px 0 22px 20px;border-left:1px solid var(--rule)}
+.pager .t{display:block;font:500 clamp(20px,2vw,26px)/1.2 var(--serif);margin-top:8px;transition:color .2s}
+.pager a:hover .t{color:var(--magenta-ink)}
+.pager .all{grid-column:1/-1;text-align:center;border-left:0}
+@media (max-width:600px){.pager{grid-template-columns:1fr}.pager a+a{text-align:left;padding-left:0;border-left:0}}
+.d-cta{background:var(--teal);color:#fff;padding:clamp(64px,8vw,112px) 0;position:relative;overflow:hidden}
+.d-cta h2{color:#fff;font:500 clamp(30px,3.8vw,50px)/1.1 var(--serif);letter-spacing:-.02em;max-width:18em}
+.d-cta h2 span{color:var(--aqua)}
+.d-cta .acts{display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;margin-top:36px}
+.d-cta .geo{position:absolute;right:-40px;top:-40px;width:180px;height:180px;background:var(--gold);border-radius:0 0 0 100%;opacity:.95}
+.d-cta .wrap{position:relative}
+@media (max-width:640px){.d-cta .geo{width:100px;height:100px}}
+.x-mark{color:var(--magenta-ink);font-weight:700}
+.ok-mark{color:var(--teal);font-weight:700}
+
+/* ===== Performance documentation ===== */
+/* audit strip */
+.strip{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:4px;margin-bottom:10px}
+.strip span{height:40px;background:var(--magenta)}
+.strip span.p{background:var(--gold)}
+.strip span.u{background:var(--teal)}
+.strip-key{list-style:none;display:flex;flex-wrap:wrap;gap:6px 22px;font:500 13px/1.3 var(--sans);color:var(--teal);margin-bottom:26px}
+.strip-key i{display:inline-block;width:10px;height:10px;margin-right:7px;background:var(--magenta)}
+.strip-key i.p{background:var(--gold)}.strip-key i.u{background:var(--teal)}
+.audit{font-size:14px;line-height:1.45;border-top:2px solid var(--teal)}
+.audit th,.audit td{padding:13px 10px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.audit thead th{font:600 11px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted-ink)}
+.audit td.c{text-align:center;font-size:15px}
+.audit td.q{font-family:var(--serif);font-style:italic;font-size:16.5px;color:var(--teal)}
+.audit td:first-child{font:600 12px/1.5 var(--sans);color:var(--muted-ink);white-space:nowrap}
+.v{font:700 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;padding:5px 7px;display:inline-block}
+.v.x{background:var(--magenta-wash);color:var(--magenta-ink)}
+.v.p{background:var(--gold-wash);color:var(--teal)}
+.v.u{background:var(--teal);color:#fff}
+@media (max-width:760px){
+  .audit thead{display:none}
+  .audit,.audit tbody,.audit tr,.audit td{display:block}
+  .audit tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:12px 0;border-bottom:1px solid var(--rule)}
+  .audit td{border:0;padding:4px 0}
+  .audit td:first-child{grid-column:1/-1}
+  .audit td.q{grid-column:1/-1;padding-bottom:8px}
+  .audit td.c{text-align:left;font-size:14px}
+  .audit td.c::before{content:attr(data-label);display:block;font:600 10.5px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--muted-ink)}
+  .audit td:last-child{grid-column:1/-1;padding-top:8px}
+}
+
+/* spec */
+.spec{list-style:none;counter-reset:s;border-top:2px solid var(--teal)}
+.spec li{counter-increment:s;display:grid;grid-template-columns:48px minmax(0,1.1fr) minmax(0,1.2fr) minmax(0,1fr);gap:10px 24px;padding:22px 0;border-bottom:1px solid var(--rule)}
+.spec li::before{content:counter(s,decimal-leading-zero);font:400 26px/1 var(--serif);color:var(--magenta-ink)}
+.spec h3{font:600 16px/1.3 var(--sans);color:var(--teal);margin-bottom:6px}
+.spec p{margin:0;font-size:14.5px;line-height:1.5}
+.spec .pass,.spec .fail{font-size:14px;padding-left:14px;border-left:3px solid var(--teal)}
+.spec .fail{border-color:var(--magenta);color:var(--muted-ink)}
+.spec .fail s{text-decoration-color:var(--magenta)}
+.spec .pass b,.spec .fail b{display:block;font:600 10.5px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;text-decoration:none;margin-bottom:4px}
+.spec .pass b{color:var(--teal)}.spec .fail b{color:var(--magenta-ink)}
+@media (max-width:860px){.spec li{grid-template-columns:40px minmax(0,1fr)}.spec li>*:not(:first-child){grid-column:2}}
+
+/* translation */
+.swap{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;list-style:none}
+.swap li{display:grid;grid-template-columns:minmax(0,1fr) 20px minmax(0,1fr);gap:10px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--rule)}
+.swap .from{font:italic 400 19px/1.3 var(--serif);color:var(--muted-ink);text-decoration:line-through;text-decoration-color:var(--magenta)}
+.swap .arr{color:var(--magenta)}
+.swap .to{font-size:15px;color:var(--teal);font-weight:500}
+@media (max-width:760px){.swap{grid-template-columns:1fr}}
+
+/* tracked-changes document */
+.doc{background:#fff;border:1px solid var(--rule);display:grid;grid-template-columns:minmax(0,1fr) 250px}
+.doc-body{padding:34px 36px;border-right:1px solid var(--rule)}
+.doc-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 20px;padding-bottom:16px;border-bottom:1px solid var(--rule);margin-bottom:22px}
+.doc-body h3{font:600 13px/1.4 var(--sans);color:var(--teal);margin:22px 0 6px}
+.doc-body h3:first-of-type{margin-top:0}
+.doc-body p{font-size:15.5px;line-height:1.7;margin:0}
+.doc del{color:var(--magenta-ink);text-decoration-color:var(--magenta);text-decoration-thickness:1.5px;background:var(--magenta-wash)}
+.doc ins{text-decoration:none;box-shadow:inset 0 -2px 0 var(--aqua);background:var(--aqua-wash);color:var(--teal)}
+.doc sup{font:700 10px/1 var(--sans);color:var(--magenta-ink);margin-left:2px}
+.margin{list-style:none;counter-reset:m;padding:34px 20px;background:var(--cream)}
+.margin li{counter-increment:m;font-size:13px;line-height:1.45;padding:12px 0 12px 30px;position:relative;border-bottom:1px solid var(--rule)}
+.margin li::before{content:counter(m);position:absolute;left:0;top:11px;width:20px;height:20px;border-radius:50%;background:var(--magenta);color:#fff;font:700 11px/20px var(--sans);text-align:center}
+.margin b{color:var(--teal);display:block}
+@media (max-width:860px){.doc{grid-template-columns:1fr}.doc-body{border-right:0;border-bottom:1px solid var(--rule);padding:24px 18px}.margin{padding:20px 18px}}
+
+/* blank template */
+.tpl{border:2px solid var(--teal);background:#fff}
+.tpl-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 20px;background:var(--teal);color:#fff;padding:14px 22px}
+.tpl-head .label{color:#fff}
+.tpl-grid{display:grid;grid-template-columns:1fr 1fr}
+.fld{padding:16px 22px 20px;border-bottom:1px solid var(--rule)}
+.fld:nth-child(odd){border-right:1px solid var(--rule)}
+.fld.wide{grid-column:1/-1;border-right:0}
+.fld label,.fld .fl{display:block;font:600 13px/1.3 var(--sans);color:var(--teal);margin-bottom:4px}
+.fld small{display:block;font-size:12.5px;color:var(--muted-ink);margin-bottom:12px}
+.fld .line{height:26px;border-bottom:1px dashed var(--muted)}
+.fld .line+.line{margin-top:4px}
+.fld .yn{display:flex;gap:18px;font:500 13px/1 var(--sans);color:var(--teal)}
+.fld .yn span::before{content:"";display:inline-block;width:12px;height:12px;border:1.5px solid var(--teal);margin-right:7px;vertical-align:-2px}
+@media (max-width:640px){.tpl-grid{grid-template-columns:1fr}.fld:nth-child(odd){border-right:0}.fld{padding:14px 16px 18px}.tpl-head{padding:12px 16px}}
+
+/* outcomes */
+.outc{list-style:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px}
+.outc li{border-top:2px solid var(--teal);padding-top:18px}
+.outc h3{font:500 22px/1.2 var(--serif);margin-bottom:10px}
+.outc p{font-size:15px;margin:0}
+@media (max-width:820px){.outc{grid-template-columns:1fr;gap:26px}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="logo" href="/" aria-label="Operationary home">
+      <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="0" y="0" width="18" height="18" fill="#0F4A56"/><path d="M22 18V0a18 18 0 0 1 18 18Z" fill="#2CC5C9"/><path d="M9 22l9 18H0Z" fill="#FC00AE"/><circle cx="31" cy="31" r="9" fill="#FCBB57"/></svg>
+      Operationary
+    </a>
+    <nav aria-label="Main">
+      <ul class="menu">
+        <li class="has-sub"><a href="/who-we-serve">Who We Serve</a>
+          <ul class="sub">
+            <li><a href="/for-founders">For Founders</a></li>
+            <li><a href="/for-ops-leaders">For Ops Leaders</a></li>
+          </ul>
+        </li>
+        <li class="has-sub in-section"><a href="/how-we-serve">How We Serve</a>
+          <ul class="sub">
+            <li><a href="/hr-administration">HR Administration</a></li>
+            <li><a href="fractional-hr.html" aria-current="true">Fractional HR Consulting</a></li>
+            <li><a href="/fractional-operations-consulting">Fractional Operations Consulting</a></li>
+            <li><a href="/recruitment">Recruitment</a></li>
+            <li><a href="/graphic-design">Graphic Design</a></li>
+            <li><a href="/executive-services">Executive Services</a></li>
+          </ul>
+        </li>
+        <li><a href="/how-we-price">How We Price</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/resources">Resources</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-aqua nav-cta" href="/contact">Book a discovery call</a>
+    <details class="mnav">
+      <summary><span class="bars" aria-hidden="true"></span>Menu</summary>
+      <div class="mnav-panel">
+        <div class="grp"><p class="label">Who We Serve</p>
+          <ul><li><a href="/for-founders">For Founders</a></li><li><a href="/for-ops-leaders">For Ops Leaders</a></li></ul>
+        </div>
+        <div class="grp"><p class="label">How We Serve</p>
+          <ul>
+            <li><a href="/hr-administration">HR Administration</a></li>
+            <li><a href="fractional-hr.html" aria-current="true">Fractional HR Consulting</a></li>
+            <li><a href="/fractional-operations-consulting">Fractional Operations Consulting</a></li>
+            <li><a href="/recruitment">Recruitment</a></li>
+            <li><a href="/graphic-design">Graphic Design</a></li>
+            <li><a href="/executive-services">Executive Services</a></li>
+          </ul>
+        </div>
+        <div class="grp">
+          <ul><li><a href="/how-we-price">How We Price</a></li><li><a href="/about">About</a></li><li><a href="/contact">Contact</a></li><li><a href="/resources">Resources</a></li></ul>
+        </div>
+        <a class="btn btn-aqua" href="/contact">Book a discovery call</a>
+      </div>
+    </details>
+  </div>
+</header>
+<main id="main">
+
+<section class="d-hero" aria-labelledby="h1">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/how-we-serve">How We Serve</a><span aria-hidden="true">/</span><a href="fractional-hr.html">Fractional HR Consulting</a><span aria-hidden="true">/</span><a href="fractional-hr.html#work">See the work</a><span aria-hidden="true">/</span><span aria-current="page">Performance documentation</span></nav>
+    <div class="d-hero-grid">
+      <div>
+        <p class="w-num"><i class="g g-1" aria-hidden="true"></i>Work example 01 of 04 · Performance system</p>
+        <h1 id="h1" class="h-display">Performance documentation standard</h1>
+        <p class="lede">An account director wanted to exit a project manager. HR asked what was on file. There were eight notes across five months. Most of them recorded how the manager felt, not what happened.</p>
+      </div>
+      <div>
+        <dl class="d-facts">
+          <div><dt>Context</dt><dd>34-person agency, one HR generalist, managers writing their own notes</dd></div>
+          <div><dt>Layer</dt><dd>Performance system · Manager decision support</dd></div>
+          <div><dt>Built</dt><dd>File audit · documentation standard · manager template · 45-minute manager session</dd></div>
+        </dl>
+        <div class="d-key"><span class="f-big">5</span><p><span class="label">Key finding</span>manager notes contained a conclusion but no observable example.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="d-sec" aria-labelledby="s1">
+  <div class="wrap d-row">
+    <div class="d-side"><span class="d-step">01</span><h2 id="s1">The file, audited</h2><p>Every note, checked against three questions. Would it hold up if someone outside the company read it?</p></div>
+    <div class="d-main">
+      <div class="strip" aria-hidden="true"><span></span><span class="u"></span><span></span><span></span><span class="p"></span><span></span><span class="p"></span><span></span></div>
+      <ul class="strip-key"><li><i></i>5 conclusion only</li><li><i class="p"></i>2 partial</li><li><i class="u"></i>1 usable</li></ul>
+      <table class="audit">
+        <caption class="sr">Audit of eight manager notes</caption>
+        <thead><tr><th scope="col">Note</th><th scope="col">What the manager wrote</th><th scope="col">Observable example</th><th scope="col">Standard stated</th><th scope="col">Employee response</th><th scope="col">Result</th></tr></thead>
+        <tbody>
+          <tr><td>N1 · Jan 12</td><td class="q">“Needs to be more proactive with clients.”</td><td class="c" data-label="Example"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Standard"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Response"><span class="x-mark" aria-label="No">✕</span></td><td><span class="v x">Conclusion only</span></td></tr>
+          <tr><td>N2 · Jan 30</td><td class="q">“Q1 client deck delivered Jan 29, due Jan 26. Discussed; agreed to flag timeline risks by Wednesday.”</td><td class="c" data-label="Example"><span class="ok-mark" aria-label="Yes">✓</span></td><td class="c" data-label="Standard"><span class="ok-mark" aria-label="Yes">✓</span></td><td class="c" data-label="Response"><span class="ok-mark" aria-label="Yes">✓</span></td><td><span class="v u">Usable</span></td></tr>
+          <tr><td>N3 · Feb 14</td><td class="q">“Communication has been an issue. We have talked about this before.”</td><td class="c" data-label="Example"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Standard"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Response"><span class="x-mark" aria-label="No">✕</span></td><td><span class="v x">Conclusion only</span></td></tr>
+          <tr><td>N4 · Feb 27</td><td class="q">“Attitude in stand-up not great.”</td><td class="c" data-label="Example"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Standard"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Response"><span class="x-mark" aria-label="No">✕</span></td><td><span class="v x">Conclusion only</span></td></tr>
+          <tr><td>N5 · Mar 4</td><td class="q">“Client revision request sat 3 business days without acknowledgement.”</td><td class="c" data-label="Example"><span class="ok-mark" aria-label="Yes">✓</span></td><td class="c" data-label="Standard"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Response"><span class="x-mark" aria-label="No">✕</span></td><td><span class="v p">Partial</span></td></tr>
+          <tr><td>N6 · Mar 18</td><td class="q">“Still not owning the account.”</td><td class="c" data-label="Example"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Standard"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Response"><span class="x-mark" aria-label="No">✕</span></td><td><span class="v x">Conclusion only</span></td></tr>
+          <tr><td>N7 · Apr 2</td><td class="q">“Talked about priorities. Said Fridays are hard with two accounts.”</td><td class="c" data-label="Example"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Standard"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Response"><span class="ok-mark" aria-label="Yes">✓</span></td><td><span class="v p">Partial</span></td></tr>
+          <tr><td>N8 · May 6</td><td class="q">“Doesn’t seem to care about quality anymore.”</td><td class="c" data-label="Example"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Standard"><span class="x-mark" aria-label="No">✕</span></td><td class="c" data-label="Response"><span class="x-mark" aria-label="No">✕</span></td><td><span class="v x">Conclusion only</span></td></tr>
+        </tbody>
+      </table>
+      <p class="d-note">Five months of notes. One that could be relied on. The manager wasn’t careless — nobody had ever said what a note needed to contain.</p>
+    </div>
+  </div>
+</section>
+
+<section class="d-sec tint" aria-labelledby="s2">
+  <div class="wrap d-row">
+    <div class="d-side"><span class="d-step">02</span><h2 id="s2">The standard</h2><p>Six elements. A note is complete when all six are there. Evidence and opinion are kept apart on purpose.</p></div>
+    <div class="d-main">
+      <ol class="spec">
+        <li><div><h3>Dated example</h3><p>A specific occurrence, with the date it happened.</p></div><p class="pass"><b>Passes</b>“Mar 4: client revision sat 3 business days without a reply.”</p><p class="fail"><b>Fails</b><s>“Recently.” “Lately.” “Again.”</s></p></li>
+        <li><div><h3>Observable behavior</h3><p>What someone could have seen or heard. Not what it meant.</p></div><p class="pass"><b>Passes</b>“Status not posted before Monday stand-up.”</p><p class="fail"><b>Fails</b><s>“Not owning the account.”</s></p></li>
+        <li><div><h3>Expected standard</h3><p>The bar, written so you could tell if it was met.</p></div><p class="pass"><b>Passes</b>“Acknowledge client requests within 1 business day.”</p><p class="fail"><b>Fails</b><s>“Be more proactive.”</s></p></li>
+        <li><div><h3>Employee response</h3><p>Their account, in their words. Recorded, not rebutted.</p></div><p class="pass"><b>Passes</b>“Said two accounts made Fridays unrealistic.”</p><p class="fail"><b>Fails</b><s>“Was defensive.”</s></p></li>
+        <li><div><h3>Support provided</h3><p>What the company did to help, and when.</p></div><p class="pass"><b>Passes</b>“Priority order agreed Mar 20.”</p><p class="fail"><b>Fails</b><s>“We’ve given a lot of support.”</s></p></li>
+        <li><div><h3>Next review date</h3><p>When this gets looked at again, and against what.</p></div><p class="pass"><b>Passes</b>“Apr 17, against the standard above.”</p><p class="fail"><b>Fails</b><s>“We’ll see how it goes.”</s></p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="d-sec" aria-labelledby="s3">
+  <div class="wrap d-row">
+    <div class="d-side"><span class="d-step">03</span><h2 id="s3">Opinion words, replaced</h2><p>Managers kept this list open while writing. If a word on the left shows up, the note isn’t finished.</p></div>
+    <div class="d-main">
+      <ul class="swap">
+        <li><span class="from">“Attitude”</span><span class="arr" aria-hidden="true">→</span><span class="to">What they said or did, and when</span></li>
+        <li><span class="from">“Not a team player”</span><span class="arr" aria-hidden="true">→</span><span class="to">Which handoff, which meeting, what happened</span></li>
+        <li><span class="from">“Communication issue”</span><span class="arr" aria-hidden="true">→</span><span class="to">Which message, sent when, expected when</span></li>
+        <li><span class="from">“Always” / “never”</span><span class="arr" aria-hidden="true">→</span><span class="to">The dates you can actually list</span></li>
+        <li><span class="from">“Lack of ownership”</span><span class="arr" aria-hidden="true">→</span><span class="to">The task, who owned it, what was missed</span></li>
+        <li><span class="from">“Everyone feels”</span><span class="arr" aria-hidden="true">→</span><span class="to">What you observed yourself</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="d-sec cream" aria-labelledby="s4">
+  <div class="wrap d-row">
+    <div class="d-side"><span class="d-step">04</span><h2 id="s4">One note, rewritten</h2><p>N3 rebuilt with the manager, using their own calendar, email and the project tracker. Nothing was added that the manager couldn’t point to.</p></div>
+    <div class="d-main">
+      <div class="doc">
+        <div class="doc-body">
+          <div class="doc-top"><span class="label">Performance note · Project manager</span><span class="label">Tracked changes</span></div>
+          <h3>Dated examples</h3>
+          <p><del>Communication has been an issue.</del><sup>1</sup> <ins>Mar 4: a client revision request sat 3 business days without acknowledgement. Mar 18: project status was not shared before Monday stand-up; the account lead heard about the delay from the client.</ins></p>
+          <h3>Expected standard</h3>
+          <p><del>We have talked about this before.</del><sup>2</sup> <ins>Discussed Feb 14 and Mar 20. Standard agreed Mar 20: client requests acknowledged within 1 business day; tracker updated by Friday 3pm.</ins></p>
+          <h3>Employee response</h3>
+          <p><ins>Said two accounts made Fridays unrealistic. Asked for a clear priority order between them.</ins><sup>3</sup></p>
+          <h3>Support provided</h3>
+          <p><ins>Priority order agreed Mar 20. Second account’s Friday report moved to Monday.</ins></p>
+          <h3>Next review</h3>
+          <p><ins>Apr 17. Review the four weeks since Mar 20 against the standard above.</ins><sup>4</sup></p>
+        </div>
+        <ol class="margin" aria-label="Reviewer comments">
+          <li><b>Conclusion removed</b>Replaced with the two dated occurrences it was based on.</li>
+          <li><b>“Before” made specific</b>Two dated conversations. The standard existed from Mar 20, not before.</li>
+          <li><b>Their view added</b>It was missing entirely. It also changed the support that was offered.</li>
+          <li><b>A date to review against</b>The exit decision now has a point where it can be made on evidence.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="d-sec" aria-labelledby="s5">
+  <div class="wrap d-row">
+    <div class="d-side"><span class="d-step">05</span><h2 id="s5">The manager template</h2><p>What managers use now. About ten minutes, written the same day as the conversation.</p></div>
+    <div class="d-main">
+      <div class="tpl" role="group" aria-label="Blank manager documentation template">
+        <div class="tpl-head"><span class="label">Performance note</span><span class="label">Write same day · file in HRIS</span></div>
+        <div class="tpl-grid">
+          <div class="fld"><span class="fl">Employee · role</span><small>Role, not a description of the person</small><div class="line"></div></div>
+          <div class="fld"><span class="fl">Date of conversation</span><small>The day it happened</small><div class="line"></div></div>
+          <div class="fld wide"><span class="fl">Dated examples</span><small>Each one: date, what happened, who saw it</small><div class="line"></div><div class="line"></div></div>
+          <div class="fld"><span class="fl">Expected standard</span><small>Where it’s written, or what was agreed and when</small><div class="line"></div></div>
+          <div class="fld"><span class="fl">Impact</span><small>On the client, the team or the work</small><div class="line"></div></div>
+          <div class="fld"><span class="fl">Employee response</span><small>Their words. Don’t argue with them here</small><div class="line"></div></div>
+          <div class="fld"><span class="fl">Support provided</span><small>What, and from when</small><div class="line"></div></div>
+          <div class="fld"><span class="fl">Next review date</span><small>And what will be reviewed</small><div class="line"></div></div>
+          <div class="fld"><span class="fl">Bring in HR?</span><small>Yes if: health, leave, discrimination or harassment raised; a formal warning is being considered; third note on the same issue</small><div class="yn"><span>Yes</span><span>No</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="d-sec" aria-labelledby="s6">
+  <div class="wrap d-row">
+    <div class="d-side"><span class="d-step">06</span><h2 id="s6">What changed operationally</h2><p>In this demonstration.</p></div>
+    <div class="d-main">
+      <ul class="outc">
+        <li><h3>The exit was paused, not cancelled.</h3><p>The decision moved to Apr 17, when it could be made on evidence — either way.</p></li>
+        <li><h3>One template, every manager.</h3><p>Notes on similar issues now look the same, whoever writes them.</p></li>
+        <li><h3>HR checks a sample.</h3><p>Five notes a quarter, against the six elements. Gaps go back to the manager, not into a file.</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="d-end">
+  <div class="wrap">
+    <p class="disclaimer"><strong>Sanitized demonstration.</strong> This is a sanitized demonstration of the structure of the work. Names, dates and figures have been changed.</p>
+    <nav class="pager" aria-label="Other work examples">
+      <a href="fractional-hr.html#work"><span class="label">← All work</span><span class="t">Fractional HR Consulting</span></a>
+      <a href="compensation-architecture.html"><span class="label">Next example →</span><span class="t">Compensation architecture + workforce forecast</span></a>
+    </nav>
+  </div>
+</section>
+
+<section class="d-cta on-dark" aria-labelledby="cta-h">
+  <span class="geo" aria-hidden="true"></span>
+  <div class="wrap">
+    <p class="eyebrow">Fractional HR Consulting</p>
+    <h2 id="cta-h">Have a file that wouldn’t hold up? <span>Bring us the situation.</span></h2>
+    <div class="acts"><a class="btn btn-aqua" href="/contact">Book a discovery call</a><a class="arrow-link" href="fractional-hr.html">Back to Fractional HR Consulting <span class="ar" aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a class="logo" href="/" aria-label="Operationary home">
+          <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false"><rect x="0" y="0" width="18" height="18" fill="#FFFFFF"/><path d="M22 18V0a18 18 0 0 1 18 18Z" fill="#2CC5C9"/><path d="M9 22l9 18H0Z" fill="#FC00AE"/><circle cx="31" cy="31" r="9" fill="#FCBB57"/></svg>
+          Operationary
+        </a>
+        <p>Fractional operations and people support for small businesses.</p>
+      </div>
+      <div>
+        <h2>Who We Serve</h2>
+        <ul><li><a href="/for-founders">For Founders</a></li><li><a href="/for-ops-leaders">For Ops Leaders</a></li></ul>
+      </div>
+      <div>
+        <h2>How We Serve</h2>
+        <ul>
+          <li><a href="/hr-administration">HR Administration</a></li>
+          <li><a href="fractional-hr.html">Fractional HR Consulting</a></li>
+          <li><a href="/fractional-operations-consulting">Fractional Operations Consulting</a></li>
+          <li><a href="/recruitment">Recruitment</a></li>
+          <li><a href="/graphic-design">Graphic Design</a></li>
+          <li><a href="/executive-services">Executive Services</a></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <ul><li><a href="/how-we-price">How We Price</a></li><li><a href="/about">About</a></li><li><a href="/resources">Resources</a></li><li><a href="/contact">Contact</a></li></ul>
+      </div>
+    </div>
+    <div class="f-base"><span>© 2026 Operationary</span><span>Work examples on this site are sanitized demonstrations. Names, dates and figures have been changed.</span></div>
+  </div>
+</footer>
+</body>
+</html>
