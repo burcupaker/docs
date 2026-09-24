@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Executive Services | Operationary</title>
-<meta name="description" content="Executive support for founders and leadership teams: calendar and inbox management, meeting preparation and follow-through, board logistics and special projects.">
+<meta name="description" content="A senior right hand for founders and CEOs: decision support on hiring, exits, structure and priorities, board preparation, and making sure decisions get carried out.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap">
@@ -393,33 +393,44 @@ table{border-collapse:collapse;width:100%}
 }
 
 /* ===== Executive Services: example artifact ===== */
-.weeks{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,40px)}
-.wk{background:#fff;border:1px solid var(--teal);padding:18px 18px 16px}
-.wk-h{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-bottom:14px}
-.wk-h h3{font:500 24px/1.1 var(--serif)}
-.wk-h b{font:600 12px/1.3 var(--sans);color:var(--magenta-ink)}
-.wk.after .wk-h b{color:var(--teal)}
-.cal{display:grid;grid-template-columns:34px repeat(5,minmax(0,1fr));gap:4px}
-.hrs{display:grid;grid-template-rows:18px repeat(20,11px);font:500 10px/1 var(--sans);color:var(--muted-ink)}
-.hrs span{grid-row:span 2}
-.day{display:grid;grid-template-rows:18px auto}
-.dn{font:600 11px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--teal);text-align:center}
-.slots{display:grid;grid-template-rows:repeat(20,11px);background:repeating-linear-gradient(180deg,var(--cream) 0 21px,var(--rule) 21px 22px)}
-.slots i{display:block;margin:1px 2px}
-.b-m{background:var(--teal)}
-.b-a{background:var(--gold)}
-.b-w{background:var(--aqua)}
-.b-f{background:repeating-linear-gradient(135deg,var(--magenta) 0 2px,transparent 2px 5px);border:1px solid var(--magenta)}
-.wk-key{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font:500 12.5px/1.3 var(--sans);color:var(--teal)}
-.wk-key li{display:flex;gap:8px;align-items:center}
-.wk-key i{display:inline-block;width:14px;height:10px}
-@media (max-width:900px){.weeks{grid-template-columns:1fr}}
-.led-h{font:500 26px/1.2 var(--serif);margin:clamp(40px,5vw,56px) 0 14px}
-.stack-tbl td.n,.stack-tbl tfoot td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
-.stack-tbl tfoot td{font-weight:700;color:var(--teal);border-top:2px solid var(--teal);border-bottom:0;padding-top:13px}
-.touch{display:inline-block;font:700 10px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;padding:4px 6px;border:1.5px solid var(--teal);color:var(--teal)}
-.touch.none{border-color:var(--rule);color:var(--muted-ink)}
-@media (max-width:820px){.stack-tbl tfoot td:empty{display:none}}
+.brief{background:#fff;border:2px solid var(--teal)}
+.brief-h{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 20px;padding:14px 24px;background:var(--teal)}
+.brief-h .label{color:#fff}
+.brief-q{padding:26px 24px 22px;border-bottom:1px solid var(--rule)}
+.brief-q p.label{margin:0 0 8px}
+.brief-q h3{font:500 clamp(24px,2.6vw,32px)/1.2 var(--serif);max-width:26em}
+.brief-meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:20px 0 0;border-top:1px solid var(--rule)}
+.brief-meta div{padding:12px 16px 0 0}
+.brief-meta div+div{padding-left:16px;border-left:1px solid var(--rule)}
+.brief-meta dt{font:600 10.5px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--muted-ink);margin-bottom:4px}
+.brief-meta dd{margin:0;font-size:14px;color:var(--teal);font-weight:500}
+@media (max-width:760px){.brief-meta{grid-template-columns:1fr 1fr;gap:12px 0}.brief-meta div:nth-child(3){padding-left:0;border-left:0}}
+.opt-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:6px 24px 0}
+.opt{font-size:14px;line-height:1.45;min-width:640px;table-layout:fixed}
+.opt th,.opt td{padding:13px 14px 13px 0;border-bottom:1px solid var(--rule);text-align:left;vertical-align:top}
+.opt thead th{font:600 11px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--muted-ink);padding-top:16px}
+.opt thead th span{display:block;font:500 17px/1.25 var(--serif);letter-spacing:0;text-transform:none;color:var(--teal);margin-top:4px}
+.opt thead th:first-child,.opt tbody th{width:20%}
+.opt tbody th{font-weight:600;color:var(--teal)}
+.opt td.pick,.opt th.pick{background:var(--aqua-wash)}
+.opt th.pick,.opt td.pick{padding-left:12px}
+.opt td.bad{color:var(--magenta-ink);font-weight:600}
+.hint{display:none;font:500 12px/1.3 var(--sans);color:var(--muted-ink);margin:8px 24px 0}
+@media (max-width:780px){.hint{display:block}}
+.rec{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);border-top:1px solid var(--teal);margin-top:18px}
+.rec>div{padding:22px 24px}
+.rec>div+div{border-left:1px solid var(--teal);background:var(--cream)}
+.rec h4{font:500 22px/1.2 var(--serif);margin:0 0 10px}
+.rec p{font-size:14.5px;margin:0 0 10px}
+.rec ol{list-style:none;counter-reset:n}
+.rec li{counter-increment:n;display:grid;grid-template-columns:24px minmax(0,1fr) auto;gap:10px;padding:9px 0;border-top:1px solid var(--rule);font-size:14px}
+.rec li::before{content:counter(n);font:500 17px/1.2 var(--serif);color:var(--magenta-ink)}
+.rec li b{font:600 11px/1.6 var(--sans);color:var(--muted-ink);white-space:nowrap}
+.guard{margin:0;padding:14px 24px;border-top:1px solid var(--rule);background:var(--gold-wash);font-size:14px;color:var(--teal)}
+@media (max-width:820px){.rec{grid-template-columns:1fr}.rec>div+div{border-left:0;border-top:1px solid var(--teal)}.rec>div,.brief-q{padding-left:18px;padding-right:18px}.opt-wrap{padding:6px 18px 0}.hint{margin:8px 18px 0}}
+.pipe-h{font:500 26px/1.2 var(--serif);margin:clamp(40px,5vw,56px) 0 14px}
+.stack-tbl td.age{font-variant-numeric:tabular-nums;white-space:nowrap}
+.stack-tbl td.old{color:var(--magenta-ink);font-weight:700}
 </style>
 </head>
 <body>
@@ -487,8 +498,8 @@ table{border-collapse:collapse;width:100%}
     <div class="hero-grid">
       <div>
         <p class="eyebrow">Executive Services</p>
-        <h1 id="hero-h" class="h-display">Your calendar is deciding <em>what you work on.</em></h1>
-        <p class="lede">Executive support for founders and leadership teams: calendar and inbox, meeting preparation and follow-through, board and investor logistics, and the projects that keep moving to next week.</p>
+        <h1 id="hero-h" class="h-display">The biggest decisions in the company have <em>one person</em> thinking about them.</h1>
+        <p class="lede">Executive Services gives founders and CEOs a senior right hand. We pressure-test the hard calls — senior hires, exits, restructures, priorities, what to tell the board — and make sure what gets decided actually happens.</p>
         <div class="hero-actions">
           <a class="btn btn-aqua" href="/contact">Book a discovery call</a>
           <a class="arrow-link" href="#example">See an example <span class="ar" aria-hidden="true">↓</span></a>
@@ -496,15 +507,15 @@ table{border-collapse:collapse;width:100%}
       </div>
       <div class="hero-art">
         <span class="qc" aria-hidden="true"></span>
-        <div class="queue" role="figure" aria-label="Illustration: a founder’s Tuesday as it actually went">
-          <p class="q-head"><span>Founder’s Tuesday</span><span>As it went</span></p>
-          <ol><li><time>7:40</time><p>212 unread. Three of them matter.</p><span class="q-tag">Inbox</span></li><li><time>9:00</time><p>A meeting with no agenda, running over.</p><span class="q-tag">Meetings</span></li><li><time>11:30</time><p>Rescheduling a vendor call for the third time.</p><span class="q-tag">Scheduling</span></li><li><time>1:00</time><p>Finding receipts for last month’s expenses.</p><span class="q-tag">Admin</span></li><li><time>3:00</time><p>Board deck due Friday. The numbers aren’t in.</p><span class="q-tag">Board</span></li><li><time>5:30</time><p>Monday’s follow-ups still unsent.</p><span class="q-tag">Follow-up</span></li></ol>
-          <p class="q-foot"><b>Ten</b> hours. Ninety minutes on the business.</p>
+        <div class="queue" role="figure" aria-label="Illustration: the decisions on a CEO’s mind in one month">
+          <p class="q-head"><span>On the CEO’s mind</span><span>This month</span></p>
+          <ol><li><time>People</time><p>“Is the Head of Delivery the right person for the next stage?”</p><span class="q-tag">Exit</span></li><li><time>Org</time><p>“Do we hire a COO, or promote from within?”</p><span class="q-tag">Structure</span></li><li><time>Board</time><p>“They want next year’s plan by the 15th.”</p><span class="q-tag">Board</span></li><li><time>Partners</time><p>“My co-founder wants to step back.”</p><span class="q-tag">Leadership</span></li><li><time>Focus</time><p>“Five priorities. Room for two.”</p><span class="q-tag">Priorities</span></li><li><time>Money</time><p>“Do we raise prices on existing clients?”</p><span class="q-tag">Strategy</span></li></ol>
+          <p class="q-foot"><b>Six</b> decisions. Nobody to think them through with.</p>
         </div>
         <span class="sq" aria-hidden="true"></span>
       </div>
     </div>
-    <dl class="hero-strip"><div><dt class="label">If you’re the founder</dt><dd>You know what you should be working on. Your week keeps filling up with things that aren’t it.</dd></div><div><dt class="label">If you run operations</dt><dd>Things wait on the founder’s inbox, and you can’t fix that from where you sit.</dd></div><div><dt class="label">Usually</dt><dd>Founders and leadership teams at 10–50 person companies without a full-time executive assistant.</dd></div></dl>
+    <dl class="hero-strip"><div><dt class="label">If you’re the founder or CEO</dt><dd>The decisions only you can make are piling up, and the people you’d normally ask are part of them.</dd></div><div><dt class="label">If you’re on the leadership team</dt><dd>You can see decisions stuck at the top, and you’re not in a position to unstick them.</dd></div><div><dt class="label">Usually</dt><dd>Founders and CEOs of 10–50 person companies who don’t yet have, or can’t yet justify, a full-time COO or chief of staff.</dd></div></dl>
   </div>
 </section>
 
@@ -513,30 +524,30 @@ table{border-collapse:collapse;width:100%}
     <header class="signs-head">
       <p class="eyebrow">Recognition</p>
       <h2 id="signs-h" class="h-section">You may be here because…</h2>
-      <p>Six signs that founder time is being spent on work with no decision in it.</p>
+      <p>Six signs that the company’s most important decisions are waiting on one person with no one beside them.</p>
     </header>
     <div>
       <ol class="signs-list">
         <li><span class="s-n" aria-hidden="true">01</span>
-          <div><p class="s-text">Follow-ups only happen when you send them yourself.</p><p class="s-under"><b>Underneath</b>Nobody owns what happens after a meeting.</p></div>
-          <a class="s-layer" href="#layer-3"><i class="g g-3" aria-hidden="true"></i><span><small>Layer</small>Meeting prep + follow-through</span></a></li>
+          <div><p class="s-text">You’re weighing a senior exit and can’t talk it through with anyone inside.</p><p class="s-under"><b>Underneath</b>The people you’d normally ask are part of the decision.</p></div>
+          <a class="s-layer" href="#layer-1"><i class="g g-1" aria-hidden="true"></i><span><small>Layer</small>Decision support</span></a></li>
         <li><span class="s-n" aria-hidden="true">02</span>
-          <div><p class="s-text">Board prep starts three days before the board meeting.</p><p class="s-under"><b>Underneath</b>Collecting materials isn’t on anyone’s calendar.</p></div>
-          <a class="s-layer" href="#layer-4"><i class="g g-4" aria-hidden="true"></i><span><small>Layer</small>Board + investor logistics</span></a></li>
+          <div><p class="s-text">Big decisions have been open for months.</p><p class="s-under"><b>Underneath</b>Nobody owns getting them to a decision.</p></div>
+          <a class="s-layer" href="#layer-2"><i class="g g-2" aria-hidden="true"></i><span><small>Layer</small>Decision pipeline</span></a></li>
         <li><span class="s-n" aria-hidden="true">03</span>
-          <div><p class="s-text">Your inbox is a to-do list other people write.</p><p class="s-under"><b>Underneath</b>There’s no triage between you and everyone else.</p></div>
-          <a class="s-layer" href="#layer-2"><i class="g g-2" aria-hidden="true"></i><span><small>Layer</small>Inbox triage</span></a></li>
+          <div><p class="s-text">The leadership team agrees in the meeting, then does something else.</p><p class="s-under"><b>Underneath</b>Decisions aren’t written down with owners and dates.</p></div>
+          <a class="s-layer" href="#layer-5"><i class="g g-5" aria-hidden="true"></i><span><small>Layer</small>Follow-through</span></a></li>
         <li><span class="s-n" aria-hidden="true">04</span>
-          <div><p class="s-text">Scheduling one meeting takes eleven emails.</p><p class="s-under"><b>Underneath</b>Your calendar has no rules, so every request is a negotiation.</p></div>
-          <a class="s-layer" href="#layer-1"><i class="g g-1" aria-hidden="true"></i><span><small>Layer</small>Calendar management</span></a></li>
+          <div><p class="s-text">The board asks for a plan, and you build it the week before.</p><p class="s-under"><b>Underneath</b>Planning runs on the board’s calendar, not the company’s.</p></div>
+          <a class="s-layer" href="#layer-4"><i class="g g-4" aria-hidden="true"></i><span><small>Layer</small>Board + investor preparation</span></a></li>
         <li><span class="s-n" aria-hidden="true">05</span>
-          <div><p class="s-text">Expenses, travel and renewals land on you.</p><p class="s-under"><b>Underneath</b>Small admin never got handed off because each piece is small.</p></div>
-          <a class="s-layer" href="#layer-5"><i class="g g-5" aria-hidden="true"></i><span><small>Layer</small>Travel, expenses + renewals</span></a></li>
+          <div><p class="s-text">You’re about to hire a senior role nobody has defined.</p><p class="s-under"><b>Underneath</b>The org design question came before the hiring question.</p></div>
+          <a class="s-layer" href="#layer-3"><i class="g g-3" aria-hidden="true"></i><span><small>Layer</small>Leadership + org decisions</span></a></li>
         <li><span class="s-n" aria-hidden="true">06</span>
-          <div><p class="s-text">The projects that matter most keep moving to next week.</p><p class="s-under"><b>Underneath</b>Nobody protects the time to do them.</p></div>
-          <a class="s-layer" href="#layer-6"><i class="g g-6" aria-hidden="true"></i><span><small>Layer</small>Special projects</span></a></li>
+          <div><p class="s-text">Everything is a priority.</p><p class="s-under"><b>Underneath</b>Nobody is holding the trade-offs.</p></div>
+          <a class="s-layer" href="#layer-6"><i class="g g-6" aria-hidden="true"></i><span><small>Layer</small>Strategic projects</span></a></li>
       </ol>
-      <p class="signs-tally">If three of these sound familiar, you don’t need to work longer. You need someone else to own the logistics.</p>
+      <p class="signs-tally">If three of these sound familiar, you don’t need more advice. You need someone inside the work with you.</p>
     </div>
   </div>
 </section>
@@ -545,10 +556,10 @@ table{border-collapse:collapse;width:100%}
   <span class="deco" aria-hidden="true"></span>
   <div class="wrap">
     <p class="eyebrow">The deeper diagnosis</p>
-    <h2 id="diag-h" class="h-display">Nobody delegates the first hour. Then it’s ten.</h2>
-    <p class="diag-intro">Each task takes five minutes, so it never seems worth handing off. Added up, they take the week.</p>
-    <ol class="drift"><li><span class="hc">Month 1</span><p>Scheduling your own meetings. It’s quicker than explaining.</p><span class="ok">True.</span></li><li><span class="hc">Month 6</span><p>Answering every email yourself, to keep things moving.</p><span class="ok">Mostly true.</span></li><li><span class="hc">Year 1</span><p>Collecting board materials, the week before, every quarter.</p><span class="ok">Manageable.</span></li><li><span class="hc">Year 2</span><p>Booking travel, chasing receipts, renewing software.</p><span class="ok">Small things.</span></li><li class="now"><span class="hc">Now</span><p>About <b>a quarter of the week</b> goes to work with <b>no decision in it</b>. The important projects get what’s left.</p></li></ol>
-    <p class="diag-close">The fix isn’t better time management. <em>It’s handing the logistics to someone who owns them.</em></p>
+    <h2 id="diag-h" class="h-display">The company grew. The CEO’s thinking partners didn’t.</h2>
+    <p class="diag-intro">At five people, the founders decide everything together. At thirty, the hardest calls get made alone.</p>
+    <ol class="drift"><li><span class="hc">5 people</span><p>Co-founders decide over lunch. Everyone knows why.</p><span class="ok">It works.</span></li><li><span class="hc">15 people</span><p>The first managers arrive. They bring problems, not options.</p><span class="ok">Manageable.</span></li><li><span class="hc">25 people</span><p>A senior hire doesn’t work out. Nobody questioned the role first.</p><span class="ok">Expensive.</span></li><li><span class="hc">35 people</span><p>The board asks for a plan. It’s built in a week.</p><span class="ok">Survivable.</span></li><li class="now"><span class="hc">Now</span><p>The hardest calls — <b>who to hire</b>, <b>who to let go</b>, <b>what to stop</b> — get made late, alone and without the full picture.</p></li></ol>
+    <p class="diag-close">The fix isn’t another advisor on the phone. <em>It’s someone inside the work who helps you decide, then makes sure it happens.</em></p>
   </div>
 </section>
 
@@ -557,40 +568,40 @@ table{border-collapse:collapse;width:100%}
     <div class="build-head">
       <div>
         <p class="eyebrow">What Operationary does</p>
-        <h2 id="build-h" class="h-section">We run the logistics. You keep the decisions.</h2>
+        <h2 id="build-h" class="h-section">A right hand for the decisions only you can make.</h2>
       </div>
-      <p class="lede">Executive support built around rules rather than requests: what goes on the calendar, what reaches the inbox, what happens after every meeting and when board prep starts.</p>
+      <p class="lede">We work alongside the founder or CEO as a senior operator: framing decisions, bringing in the facts and the people who need a say, and carrying the decision through to the team. The judgment stays yours.</p>
     </div>
     <div class="stack">
-      <div class="band"><span class="label">What stays with you</span><ul><li>Decisions</li><li>Relationships</li><li>Priorities</li><li>The narrative</li></ul></div>
-      <div class="band-arrow" aria-hidden="true">Supported by</div>
+      <div class="band"><span class="label">What the CEO carries</span><ul><li>Who to hire</li><li>Who to let go</li><li>How we’re structured</li><li>What to stop</li><li>What the board hears</li></ul></div>
+      <div class="band-arrow" aria-hidden="true">Worked through with us</div>
       <div class="zone">
-        <p class="zone-label">Executive support · what we run</p>
+        <p class="zone-label">The right-hand role · what we do</p>
         <ol class="strata">
-          <li id="layer-1"><span class="l-n"><i class="g g-1" aria-hidden="true"></i>01</span><h3>Calendar management</h3>
-            <p>Protected focus time, meeting rules, buffers and a default length for each type of meeting.</p>
-            <p class="feeds">Feeds <b>03</b> prep · <b>06</b> projects</p></li>
-          <li id="layer-2"><span class="l-n"><i class="g g-2" aria-hidden="true"></i>02</span><h3>Inbox triage</h3>
-            <p>Rules for what reaches you, what gets a drafted reply and what gets handled without you.</p>
-            <p class="feeds">Feeds <b>03</b> follow-ups · <b>05</b> admin</p></li>
-          <li id="layer-3"><span class="l-n"><i class="g g-3" aria-hidden="true"></i>03</span><h3>Meeting prep + follow-through</h3>
-            <p>Agendas before, notes and action items after, follow-ups sent the same day.</p>
-            <p class="feeds">Feeds <b>04</b> board · your team</p></li>
-          <li id="layer-4"><span class="l-n"><i class="g g-4" aria-hidden="true"></i>04</span><h3>Board + investor logistics</h3>
-            <p>A calendar for board meetings, materials collected on schedule, minutes and follow-ups tracked.</p>
-            <p class="feeds">Feeds <b>03</b> · leadership</p></li>
-          <li id="layer-5"><span class="l-n"><i class="g g-5" aria-hidden="true"></i>05</span><h3>Travel, expenses + renewals</h3>
-            <p>Booked, filed and renewed on a schedule, with your approval where it matters.</p>
-            <p class="feeds">Feeds finance</p></li>
-          <li id="layer-6"><span class="l-n"><i class="g g-6" aria-hidden="true"></i>06</span><h3>Special projects</h3>
-            <p>The projects that keep slipping: an office move, a vendor selection, an offsite. Planned and run.</p>
-            <p class="feeds">Feeds <b>01</b> calendar</p></li>
+          <li id="layer-1"><span class="l-n"><i class="g g-1" aria-hidden="true"></i>01</span><h3>Decision support</h3>
+            <p>A confidential sounding board. Decision briefs that set out the options, criteria, costs, risks and who is affected.</p>
+            <p class="feeds">Feeds <b>02</b> the list · <b>05</b> follow-through</p></li>
+          <li id="layer-2"><span class="l-n"><i class="g g-2" aria-hidden="true"></i>02</span><h3>Decision pipeline</h3>
+            <p>One list of open strategic decisions, each with an owner, what’s needed to decide and a date.</p>
+            <p class="feeds">Feeds <b>01</b> briefs · <b>04</b> board</p></li>
+          <li id="layer-3"><span class="l-n"><i class="g g-3" aria-hidden="true"></i>03</span><h3>Leadership + org decisions</h3>
+            <p>Senior hires, exits, promotions and restructures, thought through before they’re announced. HR and counsel brought in where needed.</p>
+            <p class="feeds">Feeds <b>05</b> · recruitment · HR</p></li>
+          <li id="layer-4"><span class="l-n"><i class="g g-4" aria-hidden="true"></i>04</span><h3>Board + investor preparation</h3>
+            <p>The plan, the narrative and the pre-reads, built on a schedule rather than the week before.</p>
+            <p class="feeds">Feeds <b>02</b> decisions</p></li>
+          <li id="layer-5"><span class="l-n"><i class="g g-5" aria-hidden="true"></i>05</span><h3>Follow-through</h3>
+            <p>Each decision turned into owners, dates and a communication plan, and tracked until it’s done.</p>
+            <p class="feeds">Feeds the leadership team</p></li>
+          <li id="layer-6"><span class="l-n"><i class="g g-6" aria-hidden="true"></i>06</span><h3>Strategic projects</h3>
+            <p>The initiatives that keep slipping — a pricing change, a new service line, a restructure — scoped and run.</p>
+            <p class="feeds">Feeds <b>02</b> · <b>05</b></p></li>
         </ol>
       </div>
-      <div class="band-arrow" aria-hidden="true">Working through</div>
-      <div class="band band-bottom"><span class="label">Working through</span><ul><li>Your calendar</li><li>Your inbox</li><li>Board portal</li><li>Expense and travel tools</li></ul></div>
+      <div class="band-arrow" aria-hidden="true">Carried out with</div>
+      <div class="band band-bottom"><span class="label">Carried out with</span><ul><li>Leadership team</li><li>HR and employment counsel</li><li>Finance</li><li>The board</li></ul></div>
     </div>
-    <ol class="runs" aria-label="How the engagement runs"><li><span class="label">Weeks 1–2</span><h3>Watch and map</h3><p>We track two weeks of your calendar and inbox and sort every task into keep, delegate and drop.</p></li><li><span class="label">Weeks 3–4</span><h3>Set the rules</h3><p>Calendar rules, inbox rules and the meeting follow-through routine, agreed with you.</p></li><li><span class="label">Ongoing</span><h3>Run it</h3><p>We run the day-to-day and review the week with you in fifteen minutes on Fridays.</p></li></ol>
+    <ol class="runs" aria-label="How the engagement runs"><li><span class="label">Weeks 1–2</span><h3>Learn the business</h3><p>Conversations with the CEO and leadership team, the numbers, and a written list of every decision that’s open.</p></li><li><span class="label">Every week</span><h3>Working session</h3><p>Time with the CEO on what’s open, what’s stuck and what needs a brief. Decisions leave with a date.</p></li><li><span class="label">As needed</span><h3>Carry it out</h3><p>We run the project or the difficult process end to end, with HR and counsel involved for anything that touches employment.</p></li></ol>
   </div>
 </section>
 
@@ -599,34 +610,66 @@ table{border-collapse:collapse;width:100%}
     <div class="ex-head">
       <div>
         <p class="eyebrow">See an example</p>
-        <h2 id="ex-h" class="h-section">The same founder’s week, before and after.</h2>
-        <p class="lede">The founder of a 33-person consultancy. Two weeks of calendar and inbox were mapped before anything changed.</p>
+        <h2 id="ex-h" class="h-section">A decision brief, and the list it came from.</h2>
+        <p class="lede">The CEO of a 31-person services firm. Five strategic decisions had been waiting, some for months.</p>
       </div>
-      <div class="finding"><span class="f-big">11.5</span><p><span class="label">Key finding</span>hours a week of founder time went to work with no decision in it.</p></div>
+      <div class="finding"><span class="f-big">4</span><p><span class="label">Key finding</span>strategic decisions had been open for more than 90 days. Each one now has an owner and a decide-by date.</p></div>
     </div>
-    <div class="weeks">
-      <div class="wk before" role="group" aria-label="Founder calendar before: fragmented">
-        <div class="wk-h"><h3>Before</h3><b>No focus time on the calendar</b></div>
-        <div class="cal"><div class="hrs" aria-hidden="true"><span style="grid-row:1"></span><span>8am</span><span>9am</span><span>10am</span><span>11am</span><span>12pm</span><span>1pm</span><span>2pm</span><span>3pm</span><span>4pm</span><span>5pm</span></div><div class="day"><span class="dn">Mon</span><div class="slots"><i class="b-a" style="grid-row:1/3"><span class="sr">Admin 8–9</span></i><i class="b-m" style="grid-row:3/5"><span class="sr">Meeting 9–10</span></i><i class="b-f" style="grid-row:5/6"><span class="sr">Fragment 10–10.5</span></i><i class="b-m" style="grid-row:6/8"><span class="sr">Meeting 10.5–11.5</span></i><i class="b-a" style="grid-row:9/11"><span class="sr">Admin 12–13</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-f" style="grid-row:14/15"><span class="sr">Fragment 14.5–15</span></i><i class="b-m" style="grid-row:15/17"><span class="sr">Meeting 15–16</span></i><i class="b-a" style="grid-row:18/20"><span class="sr">Admin 16.5–17.5</span></i></div></div><div class="day"><span class="dn">Tue</span><div class="slots"><i class="b-a" style="grid-row:1/2"><span class="sr">Admin 8–8.5</span></i><i class="b-f" style="grid-row:3/4"><span class="sr">Fragment 9–9.5</span></i><i class="b-m" style="grid-row:4/6"><span class="sr">Meeting 9.5–10.5</span></i><i class="b-m" style="grid-row:7/9"><span class="sr">Meeting 11–12</span></i><i class="b-f" style="grid-row:10/11"><span class="sr">Fragment 12.5–13</span></i><i class="b-m" style="grid-row:11/14"><span class="sr">Meeting 13–14.5</span></i><i class="b-a" style="grid-row:15/16"><span class="sr">Admin 15–15.5</span></i><i class="b-m" style="grid-row:17/19"><span class="sr">Meeting 16–17</span></i><i class="b-a" style="grid-row:19/21"><span class="sr">Admin 17–18</span></i></div></div><div class="day"><span class="dn">Wed</span><div class="slots"><i class="b-a" style="grid-row:1/3"><span class="sr">Admin 8–9</span></i><i class="b-f" style="grid-row:4/5"><span class="sr">Fragment 9.5–10</span></i><i class="b-m" style="grid-row:5/7"><span class="sr">Meeting 10–11</span></i><i class="b-m" style="grid-row:8/10"><span class="sr">Meeting 11.5–12.5</span></i><i class="b-f" style="grid-row:11/12"><span class="sr">Fragment 13–13.5</span></i><i class="b-m" style="grid-row:13/15"><span class="sr">Meeting 14–15</span></i><i class="b-a" style="grid-row:16/17"><span class="sr">Admin 15.5–16</span></i><i class="b-m" style="grid-row:17/19"><span class="sr">Meeting 16–17</span></i></div></div><div class="day"><span class="dn">Thu</span><div class="slots"><i class="b-f" style="grid-row:1/2"><span class="sr">Fragment 8–8.5</span></i><i class="b-m" style="grid-row:3/6"><span class="sr">Meeting 9–10.5</span></i><i class="b-a" style="grid-row:7/8"><span class="sr">Admin 11–11.5</span></i><i class="b-m" style="grid-row:9/11"><span class="sr">Meeting 12–13</span></i><i class="b-f" style="grid-row:12/13"><span class="sr">Fragment 13.5–14</span></i><i class="b-m" style="grid-row:13/16"><span class="sr">Meeting 14–15.5</span></i><i class="b-a" style="grid-row:17/19"><span class="sr">Admin 16–17</span></i><i class="b-f" style="grid-row:19/20"><span class="sr">Fragment 17–17.5</span></i></div></div><div class="day"><span class="dn">Fri</span><div class="slots"><i class="b-a" style="grid-row:1/3"><span class="sr">Admin 8–9</span></i><i class="b-m" style="grid-row:4/6"><span class="sr">Meeting 9.5–10.5</span></i><i class="b-f" style="grid-row:7/8"><span class="sr">Fragment 11–11.5</span></i><i class="b-a" style="grid-row:9/11"><span class="sr">Admin 12–13</span></i><i class="b-m" style="grid-row:12/14"><span class="sr">Meeting 13.5–14.5</span></i><i class="b-a" style="grid-row:15/17"><span class="sr">Admin 15–16</span></i><i class="b-f" style="grid-row:18/19"><span class="sr">Fragment 16.5–17</span></i></div></div></div>
+    <div class="brief" role="group" aria-label="Decision brief">
+      <div class="brief-h"><span class="label">Decision brief · confidential</span><span class="label">Prepared for the CEO</span></div>
+      <div class="brief-q">
+        <p class="label">The decision</p>
+        <h3>Head of Delivery: coach, restructure the role, or replace?</h3>
+        <dl class="brief-meta">
+          <div><dt>Decides</dt><dd>CEO</dd></div>
+          <div><dt>Consulted</dt><dd>COO, HR, employment counsel</dd></div>
+          <div><dt>Decide by</dt><dd>June 14</dd></div>
+          <div><dt>Open since</dt><dd>February</dd></div>
+        </dl>
       </div>
-      <div class="wk after" role="group" aria-label="Founder calendar after: protected focus time">
-        <div class="wk-h"><h3>After</h3><b>6 focus blocks of 3 hours or more</b></div>
-        <div class="cal"><div class="hrs" aria-hidden="true"><span style="grid-row:1"></span><span>8am</span><span>9am</span><span>10am</span><span>11am</span><span>12pm</span><span>1pm</span><span>2pm</span><span>3pm</span><span>4pm</span><span>5pm</span></div><div class="day"><span class="dn">Mon</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:7/9"><span class="sr">Meeting 11–12</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-w" style="grid-row:13/17"><span class="sr">Focus work 14–16</span></i><i class="b-a" style="grid-row:17/18"><span class="sr">Admin 16–16.5</span></i></div></div><div class="day"><span class="dn">Tue</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-m" style="grid-row:13/15"><span class="sr">Meeting 14–15</span></i><i class="b-m" style="grid-row:15/17"><span class="sr">Meeting 15–16</span></i><i class="b-m" style="grid-row:17/19"><span class="sr">Meeting 16–17</span></i></div></div><div class="day"><span class="dn">Wed</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:7/9"><span class="sr">Meeting 11–12</span></i><i class="b-w" style="grid-row:11/17"><span class="sr">Focus work 13–16</span></i><i class="b-a" style="grid-row:17/18"><span class="sr">Admin 16–16.5</span></i></div></div><div class="day"><span class="dn">Thu</span><div class="slots"><i class="b-w" style="grid-row:1/7"><span class="sr">Focus work 8–11</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-m" style="grid-row:13/15"><span class="sr">Meeting 14–15</span></i><i class="b-m" style="grid-row:15/18"><span class="sr">Meeting 15–16.5</span></i><i class="b-a" style="grid-row:18/19"><span class="sr">Admin 16.5–17</span></i></div></div><div class="day"><span class="dn">Fri</span><div class="slots"><i class="b-w" style="grid-row:1/9"><span class="sr">Focus work 8–12</span></i><i class="b-m" style="grid-row:11/13"><span class="sr">Meeting 13–14</span></i><i class="b-a" style="grid-row:13/14"><span class="sr">Admin 14–14.5</span></i></div></div></div>
+      <div class="opt-wrap">
+        <table class="opt">
+          <caption class="sr">Options compared against the decision criteria</caption>
+          <thead><tr><th scope="col">Criteria</th><th scope="col">Option A<span>Coach, with a 90-day plan</span></th><th scope="col" class="pick">Option B · recommended<span>Split the role in two</span></th><th scope="col">Option C<span>Replace</span></th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Fixes the actual gap</th><td>Partly. The role has outgrown one person.</td><td class="pick">Yes. Client relationships and delivery operations get separate owners.</td><td>Only if the new hire covers both halves.</td></tr>
+            <tr><th scope="row">Cost this year</th><td>Coaching only</td><td class="pick">One ops lead hire, from the approved headcount plan</td><td>Search fee, overlap and ramp-up</td></tr>
+            <tr><th scope="row">Time to effect</th><td>3 months, uncertain</td><td class="pick">6–8 weeks</td><td class="bad">4–6 months</td></tr>
+            <tr><th scope="row">Risk to clients</th><td>Low now, rises if it fails</td><td class="pick">Low. Their main contact stays.</td><td class="bad">High. Two key accounts sit with this person.</td></tr>
+            <tr><th scope="row">Can it be undone?</th><td>Yes</td><td class="pick">Yes, at the 6-month review</td><td class="bad">No</td></tr>
+          </tbody>
+        </table>
       </div>
+      <p class="hint">Scroll the table sideways →</p>
+      <div class="rec">
+        <div>
+          <h4>Recommendation: Option B</h4>
+          <p>The problem isn’t this person’s effort. The role now holds client relationships and delivery operations for 30 people. They’re strong at the first and stretched on the second.</p>
+          <p>Replacing them risks the two biggest accounts in order to fix the half of the job that a second hire would fix sooner.</p>
+        </div>
+        <div>
+          <p class="label" style="margin:0 0 6px">If the CEO agrees</p>
+          <ol>
+            <li><span>Role outlines for both halves</span><b>Jun 18</b></li>
+            <li><span>CEO conversation with the Head of Delivery</span><b>Jun 20</b></li>
+            <li><span>Ops lead search opened</span><b>Jun 24</b></li>
+            <li><span>Team announcement, once the new role is agreed</span><b>Jul 1</b></li>
+          </ol>
+        </div>
+      </div>
+      <p class="guard"><strong>Before any conversation:</strong> HR and employment counsel review any change to someone’s role, title or pay.</p>
     </div>
-    <ul class="wk-key"><li><i class="b-w"></i>Focus work</li><li><i class="b-m"></i>Meeting</li><li><i class="b-a"></i>Admin</li><li><i class="b-f"></i>Gap too short to use</li></ul>
-    <h3 class="led-h">Delegation ledger</h3>
+    <h3 class="pipe-h">Open decisions · the CEO’s list</h3>
     <table class="stack-tbl">
-      <caption class="sr">Delegation ledger</caption>
-      <thead><tr><th scope="col">Task</th><th scope="col">Founder hours / week, before</th><th scope="col">Now handled by</th><th scope="col">Founder’s part now</th></tr></thead>
+      <caption class="sr">Open strategic decisions</caption>
+      <thead><tr><th scope="col">Decision</th><th scope="col">Open for</th><th scope="col">Needed to decide</th><th scope="col">Decide by</th></tr></thead>
       <tbody>
-        <tr><th scope="row">Inbox triage</th><td class="n" data-label="Before">4.0</td><td data-label="Now">Executive assistant</td><td data-label="Founder’s part"><span class="touch">Reviews drafted replies</span></td></tr>
-        <tr><th scope="row">Scheduling</th><td class="n" data-label="Before">2.5</td><td data-label="Now">Executive assistant</td><td data-label="Founder’s part"><span class="touch none">None</span></td></tr>
-        <tr><th scope="row">Board materials collection</th><td class="n" data-label="Before">2.0</td><td data-label="Now">Executive assistant, on a schedule</td><td data-label="Founder’s part"><span class="touch">Writes the narrative</span></td></tr>
-        <tr><th scope="row">Expenses + receipts</th><td class="n" data-label="Before">1.5</td><td data-label="Now">Executive assistant</td><td data-label="Founder’s part"><span class="touch">Approves monthly</span></td></tr>
-        <tr><th scope="row">Meeting follow-ups</th><td class="n" data-label="Before">1.5</td><td data-label="Now">Executive assistant, same day</td><td data-label="Founder’s part"><span class="touch">Approves before sending</span></td></tr>
+        <tr><th scope="row">Head of Delivery: coach, restructure or replace</th><td class="age old" data-label="Open for">118 days</td><td data-label="Needed">Brief above</td><td data-label="Decide by">Jun 14</td></tr>
+        <tr><th scope="row">Hire a COO or promote from within</th><td class="age old" data-label="Open for">96 days</td><td data-label="Needed">What the COO would own that nobody owns today</td><td data-label="Decide by">Jul 12</td></tr>
+        <tr><th scope="row">Close the smallest service line</th><td class="age old" data-label="Open for">140 days</td><td data-label="Needed">Margin by client, and who would be affected</td><td data-label="Decide by">Board, Aug</td></tr>
+        <tr><th scope="row">Raise prices for existing clients</th><td class="age old" data-label="Open for">91 days</td><td data-label="Needed">Renewal calendar, and the risk account by account</td><td data-label="Decide by">Jul 31</td></tr>
+        <tr><th scope="row">Second office or stay remote</th><td class="age" data-label="Open for">34 days</td><td data-label="Needed">Where the next ten hires will live</td><td data-label="Decide by">Q4</td></tr>
       </tbody>
-      <tfoot><tr><td>Total</td><td class="n">11.5</td><td></td><td></td></tr></tfoot>
     </table>
     <p class="disclaimer">This is a sanitized demonstration of the structure of the work. Names, dates and figures have been changed.</p>
   </div>
@@ -639,18 +682,18 @@ table{border-collapse:collapse;width:100%}
       <h2 id="changes-h" class="h-section">Operational outcomes. You can check each one.</h2>
     </div>
     <ul class="changes">
-      <li><i class="g g-1" aria-hidden="true"></i><div><h3>Meetings have agendas and owners.</h3></div>
-        <p>Prep goes out before, action items go out after.</p>
-        <p class="seen"><b>You’ll see it when</b>Nobody asks what the meeting is about.</p></li>
-      <li><i class="g g-2" aria-hidden="true"></i><div><h3>Follow-ups go out the same day.</h3></div>
-        <p>Drafted for you, sent with your approval.</p>
-        <p class="seen"><b>You’ll see it when</b>Nothing from Monday is still waiting on Friday.</p></li>
-      <li><i class="g g-3" aria-hidden="true"></i><div><h3>Board prep runs on a schedule.</h3></div>
-        <p>Materials collected weeks ahead, not days.</p>
-        <p class="seen"><b>You’ll see it when</b>The deck is done before the week of the meeting.</p></li>
-      <li><i class="g g-4" aria-hidden="true"></i><div><h3>The founder gets whole hours back.</h3></div>
-        <p>Focus time is on the calendar and defended.</p>
-        <p class="seen"><b>You’ll see it when</b>There are three-hour blocks in the week, and they’re used.</p></li>
+      <li><i class="g g-1" aria-hidden="true"></i><div><h3>Big decisions get made on a date.</h3></div>
+        <p>Every open decision has an owner and a deadline.</p>
+        <p class="seen"><b>You’ll see it when</b>Nothing on the list is older than a quarter.</p></li>
+      <li><i class="g g-2" aria-hidden="true"></i><div><h3>Hard calls get thought through first.</h3></div>
+        <p>Options, costs and who’s affected are on paper before anyone is told.</p>
+        <p class="seen"><b>You’ll see it when</b>The CEO can explain why, not just what.</p></li>
+      <li><i class="g g-3" aria-hidden="true"></i><div><h3>Decisions turn into action.</h3></div>
+        <p>Each one leaves with owners, dates and a communication plan.</p>
+        <p class="seen"><b>You’ll see it when</b>The leadership team does what was agreed.</p></li>
+      <li><i class="g g-4" aria-hidden="true"></i><div><h3>The CEO isn’t deciding alone.</h3></div>
+        <p>There’s a senior person in the work who knows the full picture.</p>
+        <p class="seen"><b>You’ll see it when</b>Before a hard conversation, the CEO has already tested it with someone.</p></li>
     </ul>
   </div>
 </section>
@@ -662,7 +705,7 @@ table{border-collapse:collapse;width:100%}
       <h2 id="next-h">Sometimes the work shows a different need.</h2>
       <p>When it does, it’s usually one of these. Same team, same context.</p>
     </div>
-    <ul class="routes"><li><a href="fractional-operations-consulting.html"><span class="if"><b>If</b>the calendar is full because every decision routes through you.</span><span class="to">Fractional Operations Consulting <span class="ar" aria-hidden="true">→</span></span></a></li><li><a href="graphic-design.html"><span class="if"><b>If</b>board and investor decks need to look as good as the numbers.</span><span class="to">Graphic Design <span class="ar" aria-hidden="true">→</span></span></a></li><li><a href="hr-administration.html"><span class="if"><b>If</b>HR questions are a big part of what lands in your inbox.</span><span class="to">HR Administration <span class="ar" aria-hidden="true">→</span></span></a></li></ul>
+    <ul class="routes"><li><a href="fractional-hr.html"><span class="if"><b>If</b>the decision is about someone’s performance, pay or exit and needs a proper process.</span><span class="to">Fractional HR Consulting <span class="ar" aria-hidden="true">→</span></span></a></li><li><a href="fractional-operations-consulting.html"><span class="if"><b>If</b>the decision turns out to be about structure, ownership or how the company runs.</span><span class="to">Fractional Operations Consulting <span class="ar" aria-hidden="true">→</span></span></a></li><li><a href="recruitment.html"><span class="if"><b>If</b>the decision is to hire a senior role, and it needs to be done well.</span><span class="to">Recruitment <span class="ar" aria-hidden="true">→</span></span></a></li></ul>
   </div>
 </section>
 
@@ -670,8 +713,8 @@ table{border-collapse:collapse;width:100%}
   <div class="geo" aria-hidden="true"><i class="a"></i><i class="b"></i><i class="c"></i></div>
   <div class="wrap">
     <p class="eyebrow">Start with the situation</p>
-    <h2 id="final-h" class="h-section">You don’t need to know what to hand off yet. <span>Bring us last week’s calendar.</span></h2>
-    <p class="lede">We’ll show you what we’d take on, what you should keep and how many hours that frees up.</p>
+    <h2 id="final-h" class="h-section">You don’t need the decision framed yet. <span>Bring us the one you keep putting off.</span></h2>
+    <p class="lede">We’ll tell you how we’d frame it, who needs a say and what it would take to decide it this month.</p>
     <div class="hero-actions">
       <a class="btn btn-aqua" href="/contact">Book a discovery call</a>
       <a class="arrow-link" href="/how-we-price">How we price <span class="ar" aria-hidden="true">→</span></a>
